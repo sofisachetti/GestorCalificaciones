@@ -1,12 +1,12 @@
-// const express = require('express')
-// const fs = require('fs');
-// const path = require('path');
-// const app = require('../index')
+// Importamos el Modelo
+const studentsModel = require('../models/studentsModel')
 
-// const dataPath = path.join(__dirname, '../data/studentsData.json')
+// Funcion para manejar la solicitud de obtener todos los alumnos
+const getStudents = (req, res) => {
+    const students = studentsModel.getAllStudents()
+    res.json(students)
+}
 
-// app.get('/', (req, res) => {
-//     const students = JSON.parse(fs.readFileSync(dataPath, 'utf-8'))
-//     res.json(students)
-// })
-
+module.exports = {
+    getStudents
+}

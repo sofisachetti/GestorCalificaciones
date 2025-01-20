@@ -1,8 +1,7 @@
-[
-    {
-        "name": "Berni",
-        "role": "admin",
-        "course": "Backend",
-        "notes": []
-    }
-]
+
+{
+    "name": "Berni",
+    "role": "admin",
+    "course": "Backend",
+    "notes": []
+}
