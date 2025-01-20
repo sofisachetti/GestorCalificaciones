@@ -1,7 +1,27 @@
-
-{
+[
+  {
     "name": "Berni",
     "role": "admin",
     "course": "Backend",
     "notes": []
-}
+  },
+  {
+    "name": "Sofi",
+    "role": "student",
+    "notes": [
+      6,
+      10,
+      9
+    ]
+  },
+  {
+    "name": "Vicky",
+    "role": "student",
+    "course": "Backend",
+    "notes": [
+      9,
+      8,
+      10
+    ]
+  }
+]
