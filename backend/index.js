@@ -12,12 +12,18 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // Middleware para habilitar cors
-app.use(cors())
+const corsOptions = {
+    origin: '*',  
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+//app.use(cors())
 // Middleware para parsear el cuerpo de las solicitudes en formato JSON
 app.use(bodyParser.json())
 
 // Servir los archivos estaticos en el front
-app.use(express.static(path.join(__dirname, '../public'))) // Configuramos la carpeta public para servir archivos estaticos (html)
+app.use(express.static(path.join(__dirname, './public'))) // Configuramos la carpeta public para servir archivos estaticos (html)
 
 // Configuración de la ruta principal
 app.use('/students', studentsRoutes)

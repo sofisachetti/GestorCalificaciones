@@ -4,46 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor de calificaciones</title>
+
+    <!-- Link a Boostrap-libreria de Front -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <!-- Linkeo a la hoja de estilos -->
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
     <h1>Gestor de calificaciones</h1>
     <p>Bienvenido a la aplicación de gestoria de calificaciones</p>
+    <!-- Formulario para registrarse e iniciar sesion -->
     <div id="form1" >
         <h2 class="botones">Registrarse</h2>
         <form id="registerForm" class="botones">
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario-Email</label>
-                <input type="email" class="form-control" id="email" required>
+                <input type="email" class="form-control" id="emailRegister" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" class="form-control" id="passwordRegister" required>
             </div>
             <button type="submit" class="btn btn-primary">Registrar</button>
-            <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+            <button type="button" class="btn btn-secondary" id="cancelBtn1">Cancelar</button>
         </form>
+        <!-- Formulario para iniciar sesión -->
         <h2 class="botones">Iniciar sesión</h2>
         <form id="loginForm" class="botones">
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario-Email</label>
-                <input type="email" class="form-control" id="usuario" required>
+                <input type="email" class="form-control" id="usuarioLogin" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="number" class="form-control" id="password" required>
+                <input type="number" class="form-control" id="passwordLogin" required>
             </div>
             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-            <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+            <button type="button" class="btn btn-secondary" id="cancelBtn2">Cancelar</button>
         </form>
     </div>
 
-    <div>
-        <button class="botones">Ver Estudiantes</button>
+<!-- Botones de acciones -->
+    <div class="allBotones">
+        <button class="botones" id="allStudentsbtn">Ver Estudiantes</button>
+        <!-- Espacio para q se vean todos los estudiantes en formato tarjetitas -->
+        <div id="allStudentsContainer" class="row mt-4"></div>
+
         <button class="botones">Buscar Estudiante por ID</button>
+        <div id="buscarHuellitaForm" style="display: none;">
+            <h2 class="botones">Buscar Huellita por ID</h2>
+            <form id="huellitaForm" class="botones">
+                <div class="mb-3">
+                    <label for="id" class="form-label">ID</label>
+                    <input type="number" class="form-control" id="id" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+            </form>
+            <div id="studentByIdContainer" class="row mt-4">Aqui va el estudiante buscado por id</div>
+        </div>
         <button class="botones">Editar Estudiante</button>
         <button class="botones">Eliminar Estudiante</button>
         <button class="botones" id="addStudentbtnn">Añadir Estudiante</button>
@@ -54,9 +75,7 @@
 <!-- Conexion con script.js -->
 <script src="script.js" defer></script>
 <!-- Script de bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 </html>
