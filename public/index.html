@@ -64,21 +64,46 @@
             <button class="botones" id="studentByIdbtn">Buscar Estudiante por ID</button>
 
             <div id="studentByIdForm" style="display: none;">
-                <form id="studentForm">
+                <form id="studentForm1">
                     <div class="mb-3">
                         <label for="id" class="form-label-ID">ID</label>
-                        <input type="number" class="form-control" id="id" required>
+                        <input type="number" class="form-control" id="idStudentById" required>
                     </div>
                     <button type="submit" class="btn btn-primary" id="btnBuscar">Buscar</button>
-                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn3">Cancelar</button>
                 </form>
             </div>
         </div>
 
         <!-- Seccion BOTON EDITAR ESTUDIANTE -->
         <div>
-            <button class="botones">Editar Estudiante</button>
-            <div>Aqui va el contenido</div>
+            <button class="botones" id="editStudentByIdbtn">Editar Estudiante</button>
+            <div id="editStudentByIdForm" style="display: none;">
+                <form id="editStudentForm">
+                    <div class="mb-3">
+                        <label for="id" class="form-label-ID">ID</label>
+                        <input type="number" class="form-control" id="idEdit" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label-ID">Nombre</label>
+                        <input type="text" class="form-control" id="nameEdit" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="course" class="form-label-ID">Curso</label>
+                        <input type="text" class="form-control" id="courseEdit" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label-ID">Rol</label>
+                        <input type="text" class="form-control" id="roleEdit" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="notes" class="form-label-ID">Notas</label>
+                        <input type="text" class="form-control" id="notesEdit" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btnEdit">Actualizar</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn4">Cancelar</button>
+                </form>
+            </div>
         </div>
 
         <!-- Seccion BOTON ELIMINAR ESTUDIANTE -->
@@ -88,10 +113,10 @@
                 <form id="eliminateStudentForm">
                     <div class="mb-3">
                         <label for="id" class="form-label-ID">ID</label>
-                        <input type="number" class="form-control" id="id" required>
+                        <input type="number" class="form-control" id="idDelete" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" id="btnBuscar">Eliminar</button>
-                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btnEliminar">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn5">Cancelar</button>
                 </form>
             </div>
         </div>
@@ -100,25 +125,25 @@
         <div>
             <button id="addStudentbtnn" class="botones">Añadir Estudiante</button>
             <div id="addStudentForm" style="display: none;">
-                <form id="studentForm">
+                <form id="studentForm2">
                     <div class="mb-3">
                         <label for="name" class="form-label-ID">Nombre</label>
-                        <input type="text" class="form-control" id="name" required>
+                        <input type="text" class="form-control" id="addName" required>
                     </div>
                     <div class="mb-3">
                         <label for="course" class="form-label-ID">Curso</label>
-                        <input type="text" class="form-control" id="course" required>
+                        <input type="text" class="form-control" id="addCourse" required>
                     </div>
                     <div class="mb-3">
                         <label for="role" class="form-label-ID">Rol</label>
-                        <input type="text" class="form-control" id="role" required>
+                        <input type="text" class="form-control" id="addRole" required>
                     </div>
                     <div class="mb-3">
                         <label for="notes" class="form-label-ID">Notas</label>
-                        <input type="number" class="form-control" id="notes" required>
+                        <input type="number" class="form-control" id="addNotes" required>
                     </div>
                     <button type="submit" class="btn btn-primary" id="submitBtn">Añadir</button>
-                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn6">Cancelar</button>
                 </form>
             </div>
         </div>
