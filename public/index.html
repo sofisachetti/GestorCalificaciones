@@ -16,8 +16,10 @@
 <body>
     <h1>Gestor de calificaciones</h1>
     <p>Bienvenido a la aplicación de gestoria de calificaciones</p>
-    <!-- Formulario para registrarse e iniciar sesion -->
+
+    <!-- Contenedor de formularios para registrarse e iniciar sesion -->
     <div id="form1">
+        <!-- Formulario para registrarse -->
         <h2>Registrarse</h2>
         <form id="registerForm">
             <div class="mb-3">
@@ -31,6 +33,7 @@
             <button type="submit" class="btn btn-primary">Registrar</button>
             <button type="button" class="btn btn-secondary" id="cancelBtn1">Cancelar</button>
         </form>
+
         <!-- Formulario para iniciar sesión -->
         <h2>Iniciar sesión</h2>
         <form id="loginForm">
@@ -47,13 +50,16 @@
         </form>
     </div>
 
-    <!-- Botones de acciones -->
+    <!-- Botones de acciones - TODOS-->
     <div class="allBotones">
+        <!-- Seccion BOTON VER ALL ESTUDIANTES -->
         <div>
             <button id="allStudentsbtn" class="botones">Ver Estudiantes</button>
             <!-- Espacio para q se vean todos los estudiantes en formato tarjetitas -->
             <div id="allStudentsContainer" class="row mt-4"></div>
         </div>
+
+        <!-- Seccion BOTON BUSCAR ESTUDIANTE POR ID -->
         <div>
             <button class="botones" id="studentByIdbtn">Buscar Estudiante por ID</button>
 
@@ -67,18 +73,21 @@
                     <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
                 </form>
             </div>
-
         </div>
-        <!-- class="row mt-4" -->
+
+        <!-- Seccion BOTON EDITAR ESTUDIANTE -->
         <div>
             <button class="botones">Editar Estudiante</button>
             <div>Aqui va el contenido</div>
         </div>
+
+        <!-- Seccion BOTON ELIMINAR ESTUDIANTE -->
         <div>
             <button class="botones">Eliminar Estudiante</button>
             <div>Aqui va el contenido</div>
         </div>
 
+        <!-- Seccion BOTON AÑADIR ESTUDIANTE -->
         <div>
             <button id="addStudentbtnn" class="botones">Añadir Estudiante</button>
             <div id="addStudentForm" style="display: none;">
@@ -103,8 +112,6 @@
                     <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
                 </form>
             </div>
-
-            <div>Aqui va el contenido</div>
         </div>
     </div>
     <div id="studentByIdContainer"></div>
