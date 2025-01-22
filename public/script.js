@@ -107,6 +107,11 @@ document.getElementById("cancelBtn").addEventListener("click", function () {
     document.getElementById("studentByIdbtn").style.display = "none";
 });
 
+// Ocultar el formulario si se hace clic en "Añadir"
+document.getElementById("submitBtn").addEventListener("click", function () {
+    document.getElementById("addStudentForm").style.display = "none";
+});
+
 // Manejar la acción de envío del formulario
 document.getElementById("studentForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -142,7 +147,58 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
             console.error('Error:', error);
         });
 });
-    
+
+//////////////////////////////////////////////// script para metodo POST-ADD STUDENT
+document.getElementById("addStudentbtnn").addEventListener("click", function(){
+    document.getElementById("addStudentForm").style.display = "block";
+});
+// Ocultar el formulario si se hace clic en "Cancelar"
+document.getElementById("cancelBtn").addEventListener("click", function () {
+    document.getElementById("addStudentForm").style.display = "none";
+});
+
+
+// Manejar la acción de envío del formulario
+document.getElementById("addStudentForm").addEventListener("submit", function (e){
+    e.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
+
+ // Obtener los datos del formulario para crear un objeto para enviar en POST
+const name = document.getElementById("name").value;
+const course = document.getElementById("course").value;
+const role = document.getElementById("role").value;
+const notes = document.getElementById("notes").value;
+
+let studentData = {
+    name: name,
+    course: course,
+    role: role,
+    notes: notes
+}
+let studenDataJson = JSON.stringify(studentData);
+
+fetch('http://localhost:3000/students', {
+    method: 'POST',
+
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: studenDataJson,
+})
+.then(response => response.json)
+.then(data => {
+    alert('Estudiante añadido con exito.')
+    console.log(data);
+    document.getElementById("addStudentForm").style.display = "none";    
+}) 
+.catch.error(error => {
+console.log('Error: ', error);
+alert('Error al añadir estudiante.')
+});
+});
+
+
+
+
 
 
 

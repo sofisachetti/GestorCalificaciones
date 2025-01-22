@@ -60,5 +60,12 @@
     "role": "admin",
     "course": "Backend",
     "notes": []
+  },
+  {
+    "id": 9,
+    "name": "Lucia",
+    "course": "Backend",
+    "role": "student",
+    "notes": "10"
   }
 ]

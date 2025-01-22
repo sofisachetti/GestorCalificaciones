@@ -49,14 +49,14 @@
 
     <!-- Botones de acciones -->
     <div class="allBotones">
-        <div >
+        <div>
             <button id="allStudentsbtn" class="botones">Ver Estudiantes</button>
             <!-- Espacio para q se vean todos los estudiantes en formato tarjetitas -->
             <div id="allStudentsContainer" class="row mt-4"></div>
         </div>
         <div>
             <button class="botones" id="studentByIdbtn">Buscar Estudiante por ID</button>
-            
+
             <div id="studentByIdForm" style="display: none;">
                 <form id="studentForm">
                     <div class="mb-3">
@@ -67,23 +67,47 @@
                     <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
                 </form>
             </div>
-            
+
         </div>
         <!-- class="row mt-4" -->
         <div>
             <button class="botones">Editar Estudiante</button>
             <div>Aqui va el contenido</div>
         </div>
-        <div> 
+        <div>
             <button class="botones">Eliminar Estudiante</button>
             <div>Aqui va el contenido</div>
         </div>
+
         <div>
             <button id="addStudentbtnn" class="botones">Añadir Estudiante</button>
-<div>Aqui va el contenido</div>
+            <div id="addStudentForm" style="display: none;">
+                <form id="studentForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label-ID">Nombre</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="course" class="form-label-ID">Curso</label>
+                        <input type="text" class="form-control" id="course" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label-ID">Rol</label>
+                        <input type="text" class="form-control" id="role" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="notes" class="form-label-ID">Notas</label>
+                        <input type="number" class="form-control" id="notes" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Añadir</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                </form>
+            </div>
+
+            <div>Aqui va el contenido</div>
         </div>
     </div>
-    <div id="studentByIdContainer" ></div>
+    <div id="studentByIdContainer"></div>
 
 
     <!-- Conexion con script.js -->
