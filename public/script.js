@@ -6,7 +6,7 @@ const PORT = 3000;
 //     const loginForm = document.getElementById('loginForm');
 //     const cancelButtons = document.querySelectorAll('#cancelBtn');
 //     const addStudentButton = document.getElementById('addStudentbtnn');
-    
+
 //     // Función para mostrar una alerta simple (puedes modificarla para hacer algo más complejo)
 //     function showAlert(message, isError = false) {
 //         const alert = document.createElement('div');
@@ -71,7 +71,7 @@ const PORT = 3000;
 // });
 
 
-///////////////////////////
+/////////////////////////// script para metodo GET ALL STUDENTS
 document.getElementById("allStudentsbtn").addEventListener("click", function () {
     fetch(`http://localhost:3000/students`)
         .then(response => response.json())
@@ -96,3 +96,54 @@ document.getElementById("allStudentsbtn").addEventListener("click", function () 
             console.error('Error:', error);
         });
 });
+
+//////////////////////////////////////////////// script para metodo GET STUDENTS BY ID
+document.getElementById("studentByIdbtn").addEventListener("click", function () {
+    document.getElementById("studentByIdForm").style.display = "block";
+})
+
+// Ocultar el formulario si se hace clic en "Cancelar"
+document.getElementById("cancelBtn").addEventListener("click", function () {
+    document.getElementById("studentByIdbtn").style.display = "none";
+});
+
+// Manejar la acción de envío del formulario
+document.getElementById("studentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const id = document.getElementById("id").value;
+    
+    fetch(`http://localhost:3000/students/${id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+
+        .then(response => response.json())
+        .then(data => {
+            if (data){
+                console.log(data);
+            let html = `<div class="col-md-4 cardTodas">
+                            <div class="card-getById">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre: ${data.name}</h5>
+                                    <p class="card-text">Rol:${data.role}</p>
+                                    <p class="card-text">Curso: ${data.course}</p>
+                                    <p class="card-text">Calificaciones: ${data.notes}</p>
+                                </div>
+                            </div>
+                        </div>`;
+            document.getElementById("studentByIdContainer").innerHTML = html;
+            }else{alert("No hay estudiantes con ese id")
+
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+});
+    
+
+
+
+

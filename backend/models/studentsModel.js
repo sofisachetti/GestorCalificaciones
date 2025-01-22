@@ -1,3 +1,4 @@
+const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
 
@@ -19,6 +20,7 @@ const addStudent = (newStudent) => {
 // Funcion para buscar un estudiante por su ID
 const getStudentById = (id) => {
     studentsList = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    console.log(studentsList)
     const student = studentsList.find(s => s.id === parseInt(id));
     if (!student) {
         return "Estudiante no encontrado."

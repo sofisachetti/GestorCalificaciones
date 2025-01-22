@@ -13,6 +13,10 @@ h1 {
     font-size: 2.5em;
     color: #007bff;
 }
+h5{
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
 p {
     text-align: center;
@@ -39,15 +43,18 @@ form {
 }
 
  .form-label {
+    width: 100%;
     font-weight: bold;
     color: #495057;
 } 
+
 
 .form-control {
     border-radius: 4px;
     padding: 10px;
     border: 1px solid #ced4da;
     width: 100%;
+    font-size: 15px;
 }
 
 button {
@@ -68,7 +75,7 @@ button:hover {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #0d2a48;
 }
 
 .btn-secondary {
@@ -104,14 +111,19 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
 
 /*Seccion get allStudents*/
 .cardTodas{
+
     color: black;
-    width: 25%;
+    width: 100%;
     height: 25%;
 }
 .card{
     max-width: 100%;
     margin: 50px;
     background-color: antiquewhite;
+}
+
+.car-title{
+    font-size: 30px;
 }
 .card-body{
     text-align: center;
@@ -120,6 +132,31 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
     width: 25%;
     height: 25%;
 }
+
+/*Formulario para buscar estudiante por id*/
+#studentByIdForm{
+    width: 300px;
+    height: 300px;
+}
+.form-label-ID{
+    width: 100%;
+    font-weight: bold;
+    color: #0c0c0c;
+    background-color: antiquewhite;
+    margin-bottom: 5px;
+text-align: center;
+}
+#studentByIdContainer{
+    width: 100%;
+    height: 100%;
+}
+.card-getById{
+
+width: 50%;
+background-color: antiquewhite;
+justify-self: center;
+}
+
 
 
 /* Ajustes para móviles */

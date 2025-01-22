@@ -55,21 +55,21 @@
             <div id="allStudentsContainer" class="row mt-4"></div>
         </div>
         <div>
-            <button class="botones">Buscar Estudiante por ID</button>
-            <div>aqui va el contenido</div>
-            <div id="buscarHuellitaForm" style="display: none;">
-                <h2>Buscar Huellita por ID</h2>
-                <form id="huellitaForm">
+            <button class="botones" id="studentByIdbtn">Buscar Estudiante por ID</button>
+            
+            <div id="studentByIdForm" style="display: none;">
+                <form id="studentForm">
                     <div class="mb-3">
-                        <label for="id" class="form-label">ID</label>
+                        <label for="id" class="form-label-ID">ID</label>
                         <input type="number" class="form-control" id="id" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <button type="submit" class="btn btn-primary" id="btnBuscar">Buscar</button>
                     <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
                 </form>
-                <div id="studentByIdContainer" class="row mt-4">Aqui va el estudiante buscado por id</div>
             </div>
+            
         </div>
+        <!-- class="row mt-4" -->
         <div>
             <button class="botones">Editar Estudiante</button>
             <div>Aqui va el contenido</div>
@@ -82,8 +82,8 @@
             <button id="addStudentbtnn" class="botones">Añadir Estudiante</button>
 <div>Aqui va el contenido</div>
         </div>
-
     </div>
+    <div id="studentByIdContainer" ></div>
 
 
     <!-- Conexion con script.js -->
