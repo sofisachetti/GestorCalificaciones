@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,20 @@
 
     <!-- Link a Boostrap-libreria de Front -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Linkeo a la hoja de estilos -->
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>Gestor de calificaciones</h1>
     <p>Bienvenido a la aplicación de gestoria de calificaciones</p>
-    <!-- Formulario para registrarse e iniciar sesion -->
-    <div id="form1" >
-        <h2 class="botones">Registrarse</h2>
-        <form id="registerForm" class="botones">
+
+    <!-- Contenedor de formularios para registrarse e iniciar sesion -->
+    <div id="form1">
+        <!-- Formulario para registrarse -->
+        <h2>Registrarse</h2>
+        <form id="registerForm">
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario-Email</label>
                 <input type="email" class="form-control" id="emailRegister" required>
@@ -30,9 +33,10 @@
             <button type="submit" class="btn btn-primary">Registrar</button>
             <button type="button" class="btn btn-secondary" id="cancelBtn1">Cancelar</button>
         </form>
+
         <!-- Formulario para iniciar sesión -->
-        <h2 class="botones">Iniciar sesión</h2>
-        <form id="loginForm" class="botones">
+        <h2>Iniciar sesión</h2>
+        <form id="loginForm">
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario-Email</label>
                 <input type="email" class="form-control" id="usuarioLogin" required>
@@ -46,36 +50,80 @@
         </form>
     </div>
 
-<!-- Botones de acciones -->
+    <!-- Botones de acciones - TODOS-->
     <div class="allBotones">
-        <button class="botones" id="allStudentsbtn">Ver Estudiantes</button>
-        <!-- Espacio para q se vean todos los estudiantes en formato tarjetitas -->
-        <div id="allStudentsContainer" class="row mt-4"></div>
-
-        <button class="botones">Buscar Estudiante por ID</button>
-        <div id="buscarHuellitaForm" style="display: none;">
-            <h2 class="botones">Buscar Huellita por ID</h2>
-            <form id="huellitaForm" class="botones">
-                <div class="mb-3">
-                    <label for="id" class="form-label">ID</label>
-                    <input type="number" class="form-control" id="id" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Buscar</button>
-                <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
-            </form>
-            <div id="studentByIdContainer" class="row mt-4">Aqui va el estudiante buscado por id</div>
+        <!-- Seccion BOTON VER ALL ESTUDIANTES -->
+        <div>
+            <button id="allStudentsbtn" class="botones">Ver Estudiantes</button>
+            <!-- Espacio para q se vean todos los estudiantes en formato tarjetitas -->
+            <div id="allStudentsContainer" class="row mt-4"></div>
         </div>
-        <button class="botones">Editar Estudiante</button>
-        <button class="botones">Eliminar Estudiante</button>
-        <button class="botones" id="addStudentbtnn">Añadir Estudiante</button>
 
-    </div>  
+        <!-- Seccion BOTON BUSCAR ESTUDIANTE POR ID -->
+        <div>
+            <button class="botones" id="studentByIdbtn">Buscar Estudiante por ID</button>
+
+            <div id="studentByIdForm" style="display: none;">
+                <form id="studentForm">
+                    <div class="mb-3">
+                        <label for="id" class="form-label-ID">ID</label>
+                        <input type="number" class="form-control" id="id" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btnBuscar">Buscar</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Seccion BOTON EDITAR ESTUDIANTE -->
+        <div>
+            <button class="botones">Editar Estudiante</button>
+            <div>Aqui va el contenido</div>
+        </div>
+
+        <!-- Seccion BOTON ELIMINAR ESTUDIANTE -->
+        <div>
+            <button class="botones">Eliminar Estudiante</button>
+            <div>Aqui va el contenido</div>
+        </div>
+
+        <!-- Seccion BOTON AÑADIR ESTUDIANTE -->
+        <div>
+            <button id="addStudentbtnn" class="botones">Añadir Estudiante</button>
+            <div id="addStudentForm" style="display: none;">
+                <form id="studentForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label-ID">Nombre</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="course" class="form-label-ID">Curso</label>
+                        <input type="text" class="form-control" id="course" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label-ID">Rol</label>
+                        <input type="text" class="form-control" id="role" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="notes" class="form-label-ID">Notas</label>
+                        <input type="number" class="form-control" id="notes" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Añadir</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="studentByIdContainer"></div>
 
 
-<!-- Conexion con script.js -->
-<script src="script.js" defer></script>
-<!-- Script de bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Conexion con script.js -->
+    <script src="script.js" defer></script>
+    <!-- Script de bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
+
 </html>

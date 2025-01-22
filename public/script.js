@@ -1,78 +1,8 @@
 const PORT = 3000;
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     // Variables de los formularios y botones
-//     const registerForm = document.getElementById('registerForm');
-//     const loginForm = document.getElementById('loginForm');
-//     const cancelButtons = document.querySelectorAll('#cancelBtn');
-//     const addStudentButton = document.getElementById('addStudentbtnn');
-    
-//     // Función para mostrar una alerta simple (puedes modificarla para hacer algo más complejo)
-//     function showAlert(message, isError = false) {
-//         const alert = document.createElement('div');
-//         alert.classList.add('alert');
-//         alert.classList.add(isError ? 'alert-danger' : 'alert-success');
-//         alert.textContent = message;
-//         document.body.appendChild(alert);
-//         setTimeout(() => {
-//             alert.remove();
-//         }, 3000);
-//     }
-
-//     // Evento para el formulario de registro
-//     registerForm.addEventListener("submit", (event) => {
-//         event.preventDefault(); // Evita que el formulario se envíe de manera tradicional
-
-//         const email = document.getElementById("email").value;
-//         const password = document.getElementById("password").value;
-
-//         // Validación simple
-//         if (email === "" || password === "") {
-//             showAlert("Por favor, complete todos los campos.", true);
-//             return;
-//         }
-
-//         showAlert("Registro exitoso.");
-//         registerForm.reset(); // Resetea los campos del formulario
-//     });
-
-//     // Evento para el formulario de inicio de sesión
-//     loginForm.addEventListener("submit", (event) => {
-//         event.preventDefault(); // Evita el envío tradicional
-
-//         const email = document.getElementById("usuario").value;
-//         const password = document.getElementById("password").value;
-
-//         // Validación simple
-//         if (email === "" || password === "") {
-//             showAlert("Por favor, complete todos los campos.", true);
-//             return;
-//         }
-
-//         showAlert("Inicio de sesión exitoso.");
-//         loginForm.reset(); // Resetea los campos del formulario
-//     });
-
-//     // Evento para los botones de cancelar en los formularios
-//     cancelButtons.forEach(button => {
-//         button.addEventListener("click", () => {
-//             // Limpia los formularios al cancelar
-//             registerForm.reset();
-//             loginForm.reset();
-//         });
-//     });
-
-//     // Evento para el botón de añadir estudiante
-//     addStudentButton.addEventListener("click", () => {
-//         showAlert("Función para añadir estudiante aún no implementada.");
-//     });
-
-//     // Aquí puedes agregar más funcionalidad según lo que necesites, como los botones para ver estudiantes, editar, eliminar, etc.
-// });
-
-
-///////////////////////////
-document.getElementById("allStudentsbtn").addEventListener("click", function () {
+/////////////////////////// script para metodo GET ALL STUDENTS
+//Aca lo q hace es decirte que cuando haga click en el elemtno con el id allStudentID(ver en html) va a hacer la peticion a la url del back que figura en el fetch. La peticion viaja al back, entra en la ruta /students, pasa al controler.. de ahi pasa al model, hace la logica del model y nos devuelve el json con todos los estudiantes(eso es lo q nos manda el back). ese json de estudiantes entra de nuevo aca al script y se trata como DATA. Por cada estudiante (forEach) de la lista, se va a imprimir en el html una tarjetita con los datos (card). Ese modelo de card lo saque de la libreria boostrap, y despues si le hice modificaciones de tamaños colores etc con el css para q quede bien.
+document.getElementById("allStudentsbtn").addEventListener("click", function () { 
     fetch(`http://localhost:3000/students`)
         .then(response => response.json())
         .then(data => {
@@ -96,3 +26,115 @@ document.getElementById("allStudentsbtn").addEventListener("click", function () 
             console.error('Error:', error);
         });
 });
+
+//////////////////////////////////////////////// script para metodo GET STUDENTS BY ID
+//En este caso, primero hice un formulario donde le pvamos a pedir al usuario q ponga el id que quiere buscar. Ese formulario esta en el html, pero si ven dentro de la etiqueta del formulario html van a ver que dice, style.display = none, que quiere decir que esa parte va a estar oculta en el html principal. Aca, en el script yo le digo que:
+//Cuando haga click en el elemento studentById, me despliegue ese formulario que estaba oculto, cambiandole su style.display a BLOCK que es visible.
+//Despues tb le digo que oculte el formulario al clicar el boton de cancelar y de buscar.
+document.getElementById("studentByIdbtn").addEventListener("click", function () {
+    document.getElementById("studentByIdForm").style.display = "block";
+})
+
+// Ocultar el formulario si se hace clic en "Cancelar"
+document.getElementById("cancelBtn").addEventListener("click", function () {
+    document.getElementById("studentByIdbtn").style.display = "none";
+});
+
+// Ocultar el formulario si se hace clic en "Añadir"
+document.getElementById("submitBtn").addEventListener("click", function () {
+    document.getElementById("addStudentForm").style.display = "none";
+});
+
+// Manejar la acción de envío del formulario
+//Tomamos el valor que el usuario coloco en el input(id buscado), lo guardo en una const y lo pongo en la URL del fetch, ahi hago la peticion al back, hace todo el proceso anterior y esta vez lo q retorna es un solo estudiante, que lo vamos a renderizar en el html en el elemento con el id studentByIdContainer(ver en html). 
+document.getElementById("studentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const id = document.getElementById("id").value;
+    
+    fetch(`http://localhost:3000/students/${id}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+
+        .then(response => response.json())
+        .then(data => {
+            if (data){
+                console.log(data);
+            let html = `<div class="col-md-4 cardTodas">
+                            <div class="card-getById">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre: ${data.name}</h5>
+                                    <p class="card-text">Rol:${data.role}</p>
+                                    <p class="card-text">Curso: ${data.course}</p>
+                                    <p class="card-text">Calificaciones: ${data.notes}</p>
+                                </div>
+                            </div>
+                        </div>`;
+            document.getElementById("studentByIdContainer").innerHTML = html;
+            }else{alert("No hay estudiantes con ese id")
+
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+});
+
+//////////////////////////////////////////////// script para metodo POST-ADD STUDENT
+//En este caso hacemos un formulario tmb que va a estar escondido hasta q se haca click en el boton de AÑADIR ESTUDIANTE y hacemos lo mismo que en el metodo get by id, tomamos los valores de los campos input del formulario, los guardamos en constantes, armamos un obj studenteData, lo hacemos json, y hacemos el fetch, solo que en este caso vamos a mandar el cuerpo o body de la peticion(porque es un post) donde vamos a mandar el json del nuevo estud. Y ahi listo.. se agrega (le puse un alert para q avuse si se agrego exitosamente o no).
+document.getElementById("addStudentbtnn").addEventListener("click", function(){
+    document.getElementById("addStudentForm").style.display = "block";
+});
+// Ocultar el formulario si se hace clic en "Cancelar"
+document.getElementById("cancelBtn").addEventListener("click", function () {
+    document.getElementById("addStudentForm").style.display = "none";
+});
+
+
+// Manejar la acción de envío del formulario
+document.getElementById("addStudentForm").addEventListener("submit", function (e){
+    e.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
+
+ // Obtener los datos del formulario para crear un objeto para enviar en POST
+const name = document.getElementById("name").value;
+const course = document.getElementById("course").value;
+const role = document.getElementById("role").value;
+const notes = document.getElementById("notes").value;
+
+let studentData = {
+    name: name,
+    course: course,
+    role: role,
+    notes: notes
+}
+let studenDataJson = JSON.stringify(studentData);
+
+fetch('http://localhost:3000/students', {
+    method: 'POST',
+
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: studenDataJson,
+})
+.then(response => response.json)
+.then(data => {
+    alert('Estudiante añadido con exito.')
+    console.log(data);
+    document.getElementById("addStudentForm").style.display = "none";    
+}) 
+.catch.error(error => {
+console.log('Error: ', error);
+alert('Error al añadir estudiante.')
+});
+});
+
+
+
+
+
+
+
+
