@@ -1,5 +1,13 @@
 // Importamos el Modelo
+
 const studentsModel = require('../models/studentsModel')
+const jwt =require('jsonwebtoken')
+
+
+
+//Cargar variable de entorno para la clave secreta del token 
+require('dotenv').config();
+const SECRET_KEY = process.env.SECRET_KEY || 'secretKey123';//clave secreta para JWT
 
 // Funcion para manejar la solicitud de obtener todos los alumnos
 const getStudents = (req, res) => {
@@ -26,15 +34,30 @@ const updateStudent = (req, res) => {
     const { id } = req.params
     const newData = req.body
     studentsModel.updateStudent(id, newData)
-    res.status(200).json({message: 'Estudiante actualizado con exito.'})
+    res.status(200).json({ message: 'Estudiante actualizado con exito.' })
 }
 
 // Funcion para eliminar un estudiante
 const deleteStudent = (req, res) => {
     const { id } = req.params
     studentsModel.deleteStudent(id)
-    res.json({message: 'Estudiante eliminado con exito'})
+    res.json({ message: 'Estudiante eliminado con exito' })
 }
+
+//Función para registar un usuario
+const registerStudent = (req, res) => {
+    const { email, password } = req.body
+    studentsModel.registerStudent(email,password)
+    res.status(201).json({message:`Registro del usuario con éxito `})
+    }
+
+//Función de inicio de sesión
+const loginUser =(req,res) => {
+    const {email,password} = req.body
+    studentsModel.loginUser(email, password)
+    const token = jwt.sign({id: user.id, email: user.email}, SECRET_KEY, {expiresIn: '1H'}) 
+    res.json({message: 'Inicio de sesión exitoso',token })
+ }
 
 // Exportacion de funciones
 module.exports = {
@@ -42,5 +65,7 @@ module.exports = {
     addStudent,
     getStudentById,
     updateStudent,
-    deleteStudent
+    deleteStudent,
+    registerStudent,
+    loginUser
 }
