@@ -2,7 +2,8 @@ const express = require('express')
 
 // Importamos middlewares y controllers
 const studentsController = require('../controllers/studentsController')
-const middlewareValidate = require('../middlewares/validateStudent')
+const middlewareValidate= require('../middlewares/validateStudent')
+const middlewareAuthenticateToken =require('../middlewares/authenticationToken')
 
 
 const router = express.Router()
@@ -21,6 +22,18 @@ router.put('/:id', studentsController.updateStudent)
 
 // Metodo DELETE para eliminar un estudiante por su ID
 router.delete('/:id', studentsController.deleteStudent)
+
+//Metodo para Registrar nuevos usuarios
+router.post('/register',studentsController.registerStudent)
+
+//Método para inicio de sesion
+router.post('/login',middlewareAuthenticateToken.authenticateToken, studentsController.loginUser)
+
+
+
+
+//Método Ruta Protegida acceso 
+//router.get('/profile',middlewareAuthenticateToken.authenticateToken)
 
 module.exports = router
 
