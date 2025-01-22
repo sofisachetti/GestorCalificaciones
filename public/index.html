@@ -83,8 +83,17 @@
 
         <!-- Seccion BOTON ELIMINAR ESTUDIANTE -->
         <div>
-            <button class="botones">Eliminar Estudiante</button>
-            <div>Aqui va el contenido</div>
+            <button class="botones" id="eliminateStudentbtnn">Eliminar Estudiante</button>
+            <div id="eliminateStudentByIdForm" style="display: none;">
+                <form id="eliminateStudentForm">
+                    <div class="mb-3">
+                        <label for="id" class="form-label-ID">ID</label>
+                        <input type="number" class="form-control" id="id" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btnBuscar">Eliminar</button>
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
+                </form>
+            </div>
         </div>
 
         <!-- Seccion BOTON AÑADIR ESTUDIANTE -->

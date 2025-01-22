@@ -45,8 +45,8 @@ const updateStudent = (id, newData) => {
 
 // Funcion para eliminar un estudiante
 const deleteStudent = (id) => {
-    studentsList = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-    newStudentList = studentsList.filter(s => s.id !== parseInt(id))
+    let studentsList = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+    let newStudentList = studentsList.filter(s => s.id !== parseInt(id))
     fs.writeFileSync(dataPath, JSON.stringify(newStudentList, null, 2), 'utf-8')
     return "Estudiante eliminado"
 }

@@ -33,7 +33,7 @@ const updateStudent = (req, res) => {
 const deleteStudent = (req, res) => {
     const { id } = req.params
     studentsModel.deleteStudent(id)
-    res.json({message: 'Estudiante eliminado con exito'})
+    res.json(200).json({message: 'Estudiante eliminado con exito'})
 }
 
 // Exportacion de funciones
