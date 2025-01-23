@@ -52,11 +52,13 @@ const registerStudent = (req, res) => {
     }
 
 //Función de inicio de sesión
-const loginUser =(req,res) => {
+const loginUser = async (req,res) => {
     const {email,password} = req.body
-    studentsModel.loginUser(email, password)
-    const token = jwt.sign({id: user.id, email: user.email}, SECRET_KEY, {expiresIn: '1H'}) 
-    res.json({message: 'Inicio de sesión exitoso',token })
+    const result = await studentsModel.loginUser(email, password) 
+    if(!result){
+        return res.status(400).json(result);
+    }   
+    return res.status(200).json({message: 'Inicio de sesión exitoso'})
  }
 
 // Exportacion de funciones

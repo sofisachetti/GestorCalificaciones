@@ -3,6 +3,13 @@ const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+require('dotenv').config();
+
+const middlewareAuthenticateToken = require('../middlewares/authenticationToken')
+
+
+const SECRET_KEY = process.env.SECRET_KEY || 'secretKey123';//clave secreta para JWT
+
 
 // Hacemos la ruta hacia nuestra base de datos
 const dataPath = path.join(__dirname, '../data/studentsData.json')
@@ -58,7 +65,7 @@ const deleteStudent = (id) => {
 }
 
 //Función para registtrar un usuario
-const registerStudent = (email, password) => {
+const registerStudent = async (email, password) => {
     if (!email || !password) {
         return ' Campos incompletos'
     }
@@ -67,15 +74,15 @@ const registerStudent = (email, password) => {
     if (userExists) {
         return 'El usuario ya esta registrado'
     }
-    const hashPassword =  bcrypt.hash(password, 10)
+    const hashPassword = await bcrypt.hash(password, 10)
     const newUser = { id: Date.now(), email, password: hashPassword }
     dataUser.push(newUser)
-    fs.writeFileSync(dataUsersPath, JSON.stringify(dataUser, null, 2),'utf-8')
+    fs.writeFileSync(dataUsersPath, JSON.stringify(dataUser, null, 2), 'utf-8')
     return 'Usuario registrado con éxito'
 }
 
 //Para iniciar sesion
- const loginUser=(email, password) => {
+const loginUser = async (email, password) => {
     if (!email || !password) {
         return 'Campos incompletos'
     }
@@ -84,13 +91,18 @@ const registerStudent = (email, password) => {
     if (!user) {
         return 'No encontrado'
     }
-    const isPasswordValid = bcrypt.compare(password,user.password)
+    const isPasswordValid = await bcrypt.compare(password, user.password)
     if (!isPasswordValid) {
         return 'Contraseña incorrecta'
-    } 
-    
-
- }
+    }
+    //Generar token
+    const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, { expiresIn: '1h' })
+    if(!token){
+        console.log('error al generar token');        
+    }
+    console.log(token);
+    return token;
+}
 
 // Exportacion de funciones
 module.exports = {

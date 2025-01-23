@@ -3,5 +3,20 @@
     "id": 1737506471445,
     "email": "melody@gmail.com",
     "password": {}
+  },
+  {
+    "id": 1737596814344,
+    "email": "Vi@gmail.com",
+    "password": "$2b$10$DmmcF2OirIj.KhpCNOYJrOJ6QipVcMxdqQyHxE6UVp43tdBusjGtG"
+  },
+  {
+    "id": 1737602249779,
+    "email": "Victoria@gmail.com",
+    "password": "$2b$10$wNdkKsj68f5Z74TTzrkby.bsgvEuc7h32P5Y0bmjg5biL0TXvOoYu"
+  },
+  {
+    "id": 1737602762270,
+    "email": "Juana@gmail.com",
+    "password": "$2b$10$Hgi1qoPAH1hvS3dq17nISO96XLaHZVWqqpx3MqllbO73Qf8DHGxbi"
   }
 ]
