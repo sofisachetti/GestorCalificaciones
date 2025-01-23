@@ -19,7 +19,7 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
-app.use(cors())
+//app.use(cors())
 // Middleware para parsear el cuerpo de las solicitudes en formato JSON
 app.use(bodyParser.json())
 
