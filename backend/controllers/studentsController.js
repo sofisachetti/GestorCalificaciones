@@ -59,7 +59,7 @@ const loginUser = async (req,res) => {
         return res.status(400).json({message: `Email o contraseña no coinciden`});
     }   
     return res.status(200).json({message: 'Inicio de sesión exitoso'})
- }
+}
 
 // Exportacion de funciones
 module.exports = {

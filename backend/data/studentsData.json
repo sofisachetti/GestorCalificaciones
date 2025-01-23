@@ -1,16 +1,5 @@
 [
   {
-    "id": 5,
-    "name": "Carla",
-    "role": "Student",
-    "course": "Front",
-    "notes": [
-      "1",
-      "3",
-      "4"
-    ]
-  },
-  {
     "id": 6,
     "name": "Fernando",
     "role": "Student",
@@ -34,5 +23,12 @@
     "course": "Frontend",
     "role": "Student",
     "notes": "3"
+  },
+  {
+    "id": 4,
+    "name": "Carla",
+    "course": "Frontend",
+    "role": "student",
+    "notes": "789"
   }
 ]
