@@ -13,6 +13,7 @@ document.getElementById("allStudentsbtn").addEventListener("click", function () 
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Nombre: ${student.name}</h5>
+                                    <p class="card-text">ID: ${student.id}</p>
                                     <p class="card-text">Rol:${student.role}</p>
                                     <p class="card-text">Curso: ${student.course}</p>
                                     <p class="card-text">Calificaciones: ${student.notes}</p>
@@ -69,6 +70,7 @@ document.getElementById("studentForm1").addEventListener("submit", function (e) 
                                 <div class="card-getById">
                                     <div class="card-body">
                                         <h5 class="card-title">Nombre: ${data.name}</h5>
+                                        <p class="card-text">ID: ${data.id}</p>
                                         <p class="card-text">Rol:${data.role}</p>
                                         <p class="card-text">Curso: ${data.course}</p>
                                         <p class="card-text">Calificaciones: ${data.notes}</p>
