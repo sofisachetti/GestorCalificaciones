@@ -31,33 +31,43 @@ const SECRET_KEY = 'claveSecreta123';//clave secreta para JWT
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']; // Obtener el encabezado de autorización
+console.log(authHeader);
 
     if (!authHeader) {
-        return res.status(401).json({ error: 'Token no proporcionado' });
+        return res.status(401).json({ error: 'No tenes autorizacion.' });
     }
+
+    const token = authHeader.split(' ')[1];
+    const decodedToken = jwt.decode(token, SECRET_KEY);
+
+    req.user = decodedToken;
+    next();
+}
+
+
 
     // Verificar que el encabezado de autorización tiene el formato correcto
-    const token = authHeader.split(' ')[1];  // Obtiene el token de la forma "Bearer <token>"
+    //const token = authHeader.split(' ')[1];  // Obtiene el token de la forma "Bearer <token>"
 
-    if (!token) {
-        return res.status(401).json({ error: 'TOKEN NO PROPORCIONADO' })
-    }
+    // if (!token) {
+    //     return res.status(401).json({ error: 'TOKEN NO PROPORCIONADO' })
+    // }
 
-    try {
-        // Verificar validez del token
-        const decodedToken = jwt.verify(token, SECRET_KEY);
+    // try {
+    //     // Verificar validez del token
+    //     const decodedToken = jwt.verify(authHeader, SECRET_KEY);
 
-        if (!decodedToken.email) {
-            return res.status(401).json({ message: 'Token no coincide con el usuario.' });
-        }
+    //     if (!decodedToken.email) {
+    //         return res.status(401).json({ message: 'Token no coincide con el usuario.' });
+    //     }
 
-        // Guardamos los datos del usuario extraídos del token
-        req.user = decodedToken;
-        next(); // Continúa con la siguiente función de middleware o controlador
-    } catch (err) {
-        return res.status(401).json({ message: 'Token inválido o expirado.' });
-    }
-}
+    //     // Guardamos los datos del usuario extraídos del token
+    //     req.user = decodedToken;
+    //     next(); // Continúa con la siguiente función de middleware o controlador
+    // } catch (err) {
+    //     return res.status(401).json({ message: 'Token inválido o expirado.' });
+    // }
+
 
 
 module.exports ={

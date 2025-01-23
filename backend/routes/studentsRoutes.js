@@ -11,16 +11,16 @@ const router = express.Router()
 // Metodo GET para obtener todos los alumnos
 router.get('/', studentsController.getStudents)
 
-// Metodo POST para agregar un nuevo alumno
-router.post('/', middlewareValidate.validateStudent, studentsController.addStudent)
+// Metodo POST para agregar un nuevo alumno // RUTA PROTEGIDA
+router.post('/', middlewareValidate.validateStudent, middlewareAuthenticateToken.authenticateToken, studentsController.addStudent)
 
 // Metodo GET para obtener un estudiante segun su ID
 router.get('/:id', studentsController.getStudentById)
 
-// Metodo PUT para actualizar un estudiante segun si ID
-router.put('/:id', studentsController.updateStudent)
+// Metodo PUT para actualizar un estudiante segun si ID // RUTA PROTEGIDA
+router.put('/:id',middlewareAuthenticateToken.authenticateToken, studentsController.updateStudent)
 
-// Metodo DELETE para eliminar un estudiante por su ID
+// Metodo DELETE para eliminar un estudiante por su ID / RUTA PROTEGIDA
 router.delete('/:id',middlewareAuthenticateToken.authenticateToken, studentsController.deleteStudent)
 
 //Metodo para Registrar nuevos usuarios

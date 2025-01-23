@@ -1,16 +1,5 @@
 [
   {
-    "id": 6,
-    "name": "Fernando",
-    "role": "Student",
-    "course": "backend",
-    "notes": [
-      "4",
-      " 7",
-      " 2"
-    ]
-  },
-  {
     "id": 8,
     "name": "Ana",
     "role": "admin",

@@ -28,5 +28,20 @@
     "id": 1737663694735,
     "email": "sofi@gmail.com",
     "password": "$2b$10$JdBkl2/jAU59OkTl8qw2xOC3XVR1xB46uPNfItoR7AJxJLvRfz0g."
+  },
+  {
+    "id": 1737666334856,
+    "email": "florencia@gmail.com",
+    "password": "$2b$10$Eh7eeom7F1s0ZrqoYiF/Zeq8ZON96NZivC6dr/E06tpSb2EL8rnna"
+  },
+  {
+    "id": 1737666892434,
+    "email": "CARLO@gmail.com",
+    "password": "$2b$10$nvtZY..pUGemO8U5SRW8aeqeJKjlHyFx6zg1DEB8RtLPa.l4kSHlC"
+  },
+  {
+    "id": 1737668528300,
+    "email": "Coti@gmail.com",
+    "password": "$2b$10$nyf5zHfoSVDqEuwjJBdlj.tnKIUeH2Wg1wa0.xytKTkkhrbxMiu16"
   }
 ]
