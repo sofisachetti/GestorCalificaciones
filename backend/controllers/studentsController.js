@@ -55,8 +55,9 @@ const registerStudent = (req, res) => {
 const loginUser =(req,res) => {
     const {email,password} = req.body
     studentsModel.loginUser(email, password)
-    const token = jwt.sign({id: user.id, email: user.email}, SECRET_KEY, {expiresIn: '1H'}) 
-    res.json({message: 'Inicio de sesión exitoso',token })
+ const token = jwt.sign({id: user.id, email: user.email}, SECRET_KEY, {expiresIn: '1H'}) 
+    req.user = token
+ res.json({message: 'Inicio de sesión exitoso'})
  }
 
 // Exportacion de funciones

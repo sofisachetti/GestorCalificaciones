@@ -27,9 +27,9 @@ router.delete('/:id', studentsController.deleteStudent)
 router.post('/register',studentsController.registerStudent)
 
 //Método para inicio de sesion
-router.post('/login',middlewareAuthenticateToken.authenticateToken, studentsController.loginUser)
+router.post('/login',middlewareAuthenticateToken.verifyToken, studentsController.loginUser)
 
-
+//router.get('/protected',middlewareAuthenticateToken.authenticateToken, studentsController.loginUser)
 
 
 //Método Ruta Protegida acceso 

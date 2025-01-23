@@ -67,15 +67,15 @@ const registerStudent = (email, password) => {
     if (userExists) {
         return 'El usuario ya esta registrado'
     }
-    const hashPassword =  bcrypt.hash(password, 10)
+    const hashPassword = bcrypt.hash(password, 10)
     const newUser = { id: Date.now(), email, password: hashPassword }
     dataUser.push(newUser)
-    fs.writeFileSync(dataUsersPath, JSON.stringify(dataUser, null, 2),'utf-8')
+    fs.writeFileSync(dataUsersPath, JSON.stringify(dataUser, null, 2), 'utf-8')
     return 'Usuario registrado con éxito'
 }
 
 //Para iniciar sesion
- const loginUser=(email, password) => {
+const loginUser = (email, password) => {
     if (!email || !password) {
         return 'Campos incompletos'
     }
@@ -84,13 +84,15 @@ const registerStudent = (email, password) => {
     if (!user) {
         return 'No encontrado'
     }
-    const isPasswordValid = bcrypt.compare(password,user.password)
+    const isPasswordValid = bcrypt.compare(password, user.password)
     if (!isPasswordValid) {
         return 'Contraseña incorrecta'
-    } 
-    
+    }
+    else {
+        return 'Inicio de sesion exitosa'
+    }
 
- }
+}
 
 // Exportacion de funciones
 module.exports = {
