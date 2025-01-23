@@ -61,22 +61,21 @@ document.getElementById("studentForm1").addEventListener("submit", function (e) 
 
         .then(response => response.json())
         .then(data => {
-            if (data) {
-                console.log(data);
-                let html = `<div class="col-md-4 cardTodas">
-                            <div class="card-getById">
-                                <div class="card-body">
-                                    <h5 class="card-title">Nombre: ${data.name}</h5>
-                                    <p class="card-text">Rol:${data.role}</p>
-                                    <p class="card-text">Curso: ${data.course}</p>
-                                    <p class="card-text">Calificaciones: ${data.notes}</p>
-                                </div>
-                            </div>
-                        </div>`;
-                document.getElementById("studentByIdContainer").innerHTML = html;
+            if (data.name === undefined) {
+                alert('Estudiante no encontrado')
             } else {
-                alert("No hay estudiantes con ese id")
-
+                console.log(data);
+                    let html = `<div class="col-md-4 cardTodas">
+                                <div class="card-getById">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Nombre: ${data.name}</h5>
+                                        <p class="card-text">Rol:${data.role}</p>
+                                        <p class="card-text">Curso: ${data.course}</p>
+                                        <p class="card-text">Calificaciones: ${data.notes}</p>
+                                    </div>
+                                    </div>
+                                </div>`;
+                        document.getElementById("studentByIdContainer").innerHTML = html;
             }
         })
         .catch(error => {
@@ -167,9 +166,13 @@ document.getElementById("eliminateStudentByIdForm").addEventListener("submit", f
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            alert("El estudiante ha sido eliminado exitosamente");
-            document.getElementById("eliminateStudentByIdForm").style.display = "none";
+            if (data.id === undefined) {
+                alert("Error al eliminar estudiante")
+            } else {
+                console.log(data);
+                alert("El estudiante ha sido eliminado exitosamente");
+                document.getElementById("eliminateStudentByIdForm").style.display = "none";
+            }
         })
         .catch(error => {
             console.log('Error: ', error);

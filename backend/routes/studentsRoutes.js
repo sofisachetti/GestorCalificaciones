@@ -21,7 +21,7 @@ router.get('/:id', studentsController.getStudentById)
 router.put('/:id', studentsController.updateStudent)
 
 // Metodo DELETE para eliminar un estudiante por su ID
-router.delete('/:id', studentsController.deleteStudent)
+router.delete('/:id',middlewareAuthenticateToken.authenticateToken, studentsController.deleteStudent)
 
 //Metodo para Registrar nuevos usuarios
 router.post('/register',studentsController.registerStudent)
@@ -29,11 +29,14 @@ router.post('/register',studentsController.registerStudent)
 //Método para inicio de sesion
 router.post('/login', studentsController.loginUser) //Saque el middleware de autenticacion de aca.. por lo q entendi hay q ponerlo en la ruta protegida
 
-//router.get('/profile',middlewareAuthenticateToken.authenticateToken)
-
-
-
 //Método Ruta Protegida acceso 
+router.get('/profile', middlewareAuthenticateToken.authenticateToken, (req, res) => {
+    res.status(200).send("Ya tienes acceso a las funciones de admin.")
+})
+
+
+
+
 //router.get('/profile',middlewareAuthenticateToken.authenticateToken)
 
 module.exports = router

@@ -20,8 +20,13 @@
     "password": "$2b$10$Hgi1qoPAH1hvS3dq17nISO96XLaHZVWqqpx3MqllbO73Qf8DHGxbi"
   },
   {
-    "id": 1737664899149,
-    "email": "tomas@gmail.com",
-    "password": "$2b$10$kgu.75BAxhaIfxoRzPC32uPCO6rRoksBm9jRE2uWdpNMur7FFCvYG"
+    "id": 1737654123487,
+    "email": "ad@gmail.com",
+    "password": "$2b$10$2eW1K2AygJiXOLwyie7cUeY4YcUpZbJxcV9Cr93U/IDOLjkdLfufW"
+  },
+  {
+    "id": 1737663694735,
+    "email": "sofi@gmail.com",
+    "password": "$2b$10$JdBkl2/jAU59OkTl8qw2xOC3XVR1xB46uPNfItoR7AJxJLvRfz0g."
   }
 ]

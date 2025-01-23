@@ -3,6 +3,7 @@ require('dotenv').config();
 const SECRET_KEY = 'claveSecreta123';//clave secreta para JWT
 // process.env.SECRET_KEY || 
 
+// --------------- PRIMER INTENTO
 //Middleware para verificar el jwt 
 /*function verifyToken(req, res, next) {
     const authHeader = req.headers['authorization']// lee el encabezado de autorization
@@ -36,11 +37,10 @@ function authenticateToken(req, res, next) {
     }
 
     // Verificar que el encabezado de autorización tiene el formato correcto
-    const token = authHeader.split(' ')[1]; // Obtiene el token de la forma "Bearer <token>"
+    const token = authHeader.split(' ')[1];  // Obtiene el token de la forma "Bearer <token>"
 
     if (!token) {
         return res.status(401).json({ error: 'TOKEN NO PROPORCIONADO' })
-        return res.status(401).json({ error: 'Token no proporcionado o formato incorrecto' });
     }
 
     try {
