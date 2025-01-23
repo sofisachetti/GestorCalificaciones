@@ -14,10 +14,17 @@
     "notes": "3"
   },
   {
+    "id": 3,
+    "name": "Rodolfo",
+    "course": "Back",
+    "role": "Back",
+    "notes": "4"
+  },
+  {
     "id": 4,
-    "name": "Carla",
-    "course": "Frontend",
-    "role": "student",
-    "notes": "789"
+    "name": "Camilo",
+    "course": "Front",
+    "role": "Student",
+    "notes": "1,10,3,6,7.8"
   }
 ]

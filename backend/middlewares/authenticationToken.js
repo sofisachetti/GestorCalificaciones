@@ -38,7 +38,7 @@ console.log(authHeader);
     }
 
     const token = authHeader.split(' ')[1];
-    const decodedToken = jwt.decode(token, SECRET_KEY);
+    const decodedToken = jwt.decode(token, SECRET_KEY); //cambiamos verify por decode y funciono!
 
     req.user = decodedToken;
     next();
