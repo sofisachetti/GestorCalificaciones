@@ -128,7 +128,7 @@ document.getElementById("editStudentByIdForm").addEventListener("submit", functi
     })
         .then(response => response.json())
         .then(data => {
-            alert('Estudiante actualizada con exito.')
+            alert('Estudiante actualizad con exito.')
             console.log(data);
             document.getElementById("editStudentByIdForm").style.display = "none";
         })
