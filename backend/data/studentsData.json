@@ -25,6 +25,10 @@
     "name": "Camilo",
     "course": "Front",
     "role": "Student",
-    "notes": "1,10,3,6,7.8"
+    "notes": [
+      "modulo)1",
+      "modulo2=7",
+      "modulo3=10"
+    ]
   }
 ]
