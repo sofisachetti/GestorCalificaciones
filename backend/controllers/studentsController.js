@@ -56,7 +56,6 @@ const registerUser = (req, res) => {
         res.status(400).json({message:"Usuario ya existe"});
     } else{
         res.status(201).json({message:`Registro del usuario con éxito `})
-
     }       
 
     }
