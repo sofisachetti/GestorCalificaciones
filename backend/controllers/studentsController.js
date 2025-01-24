@@ -65,8 +65,8 @@ const loginUser = async (req,res) => {
     const result = await studentsModel.loginUser(email, password) 
     if(!result){
         return res.status(400).json({message: `Email o contraseña no coinciden`});
-    }   
-    return res.status(200).json({message: 'Inicio de sesión exitoso'})
+    }       
+    return res.status(200).json({message: 'Inicio de sesión exitoso', token: result})
 }
 
 // Exportacion de funciones

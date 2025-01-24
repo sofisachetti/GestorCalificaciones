@@ -285,7 +285,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
     //.then(response => response.json)
     .then(data => {
-        console.log(data);
+        console.log(data.headers);
         if (data.status === 400) {
             alert("Error. Corroborar email y contraseña ingresados.")
         } else if (data.status === 200) {
