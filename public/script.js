@@ -166,7 +166,7 @@ document.getElementById("eliminateStudentByIdForm").addEventListener("submit", f
     fetch(`http://localhost:3000/students/${id}`, {
         method: 'DELETE',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
     })
         .then(response => response.json())
@@ -255,10 +255,8 @@ document.getElementById("registerForm").addEventListener("submit", function (e){
         },
         body: JSON.stringify({email, password})
     })
-    //.then(response => response.json)
+    .then(response => response.json)
     .then(data => {
-        console.log(data);
-        
         if(data.status === 201){
             alert("Usuario registrado con exito!")
         }else if (data.status === 400) {
@@ -270,3 +268,33 @@ document.getElementById("registerForm").addEventListener("submit", function (e){
         alert("Hubo un error al registrar el usuario, intente nuevamente.")
     });
 });
+
+//////////////////// Script para formulario de login
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email = document.getElementById("usuarioLogin").value;
+    const password = document.getElementById("passwordLogin").value;
+
+    fetch("http://localhost:3000/students/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email, password})
+    })
+
+    //.then(response => response.json)
+    .then(data => {
+        console.log(data);
+        if (data.status === 400) {
+            alert("Error. Corroborar email y contraseña ingresados.")
+        } else if (data.status === 200) {
+            alert("Inicio de sesion exitoso.")
+        }
+        
+    })
+    .catch(error => {
+        console.log("Error de login-catch script", error);
+        alert("Hubo un error al ingresar, intente nuevamente.")
+    })
+})
