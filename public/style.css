@@ -1,17 +1,17 @@
 /* Estilos generales */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #a1b3c6;
+    background-color: #fff5fc;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #CD045F;
 }
 
 h1 {
     text-align: center;
     margin-top: 20px;
     font-size: 2.5em;
-    color: #007bff;
+    color: #CD045F;
 }
 h5{
     font-size: 30px;
@@ -70,12 +70,12 @@ button:hover {
 
 /* Estilos de los botones */
 .btn-primary {
-    background-color: #007bff;
+    background-color: #CD045F;
     border: none;
 }
 
 .btn-primary:hover {
-    background-color: #0d2a48;
+    background-color: #e72828;
 }
 
 .btn-secondary {
@@ -92,34 +92,35 @@ button:hover {
     width: 100%;
     display: inline-flex;
     padding: 10px;
-    background-color: #244db2;
+    background-color: #fcdfcc;
     justify-content: center;
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    flex-wrap: wrap;
     justify-content: space-around;
 }
 
 .botones{
-    background-color: #73818e;
+    background-color: #CD0055;
     font-size: 25px;
-    border: 1px solid black;
+    color: #ffffff;
+    border: 0px solid rgb(255, 255, 255);
     border-radius: 20px;
 }
 
 .botones:hover{
-    background-color: #9cb0c5;
+    background-color: #E72828;
 }
 
 /*Seccion get allStudents*/
 .cardTodas{
 
-    color: black;
+    color: rgb(205, 4, 95);
     width: 100%;
     height: 25%;
 }
 .card{
     max-width: 100%;
     margin: 50px;
-    background-color: antiquewhite;
+    background-color: rgb(255, 255, 255);
 }
 
 .car-title{
@@ -142,7 +143,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
 .form-label-ID{
     width: 100%;
     font-weight: bold;
-    color: #0c0c0c;
+    color: #7a7a7a;
     background-color: antiquewhite;
     margin-bottom: 5px;
 text-align: center;
