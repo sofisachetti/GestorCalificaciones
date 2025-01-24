@@ -24,7 +24,7 @@ router.put('/:id',middlewareAuthenticateToken.authenticateToken, studentsControl
 router.delete('/:id',middlewareAuthenticateToken.authenticateToken, studentsController.deleteStudent)
 
 //Metodo para Registrar nuevos usuarios
-router.post('/register',studentsController.registerStudent)
+router.post('/register',studentsController.registerUser)
 
 //Método para inicio de sesion
 router.post('/login', studentsController.loginUser) //Saque el middleware de autenticacion de aca.. por lo q entendi hay q ponerlo en la ruta protegida

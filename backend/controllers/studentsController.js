@@ -45,11 +45,23 @@ const deleteStudent = (req, res) => {
 }
 
 //Función para registar un usuario
-const registerStudent = (req, res) => {
+const registerUser = (req, res) => {
     const { email, password } = req.body
-    studentsModel.registerStudent(email,password)
-    res.status(201).json({message:`Registro del usuario con éxito `})
+    if (!email || !password) {
+            console.log("Campos incompletos");        
+            return res.status(400).json({message:"Campos incompletos."});
+        }
+    const resModel = studentsModel.registerUser(email,password)
+    if(!resModel){
+        res.status(400).json({message:"Usuario ya existe"});
+    } else{
+        res.status(201).json({message:`Registro del usuario con éxito `})
+
+    }       
+
     }
+
+    
 
 //Función de inicio de sesión
 const loginUser = async (req,res) => {
@@ -68,6 +80,6 @@ module.exports = {
     getStudentById,
     updateStudent,
     deleteStudent,
-    registerStudent,
+    registerUser,
     loginUser
 }

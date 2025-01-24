@@ -43,5 +43,45 @@
     "id": 1737668528300,
     "email": "Coti@gmail.com",
     "password": "$2b$10$nyf5zHfoSVDqEuwjJBdlj.tnKIUeH2Wg1wa0.xytKTkkhrbxMiu16"
+  },
+  {
+    "id": 1737736364766,
+    "email": "tata@gmail.com",
+    "password": "$2b$10$3n1svqvDVGEVQMrDSKVx3OWEDZv5h6FdMIA6SuXL/OOy67yFMPhX6"
+  },
+  {
+    "id": 1737736575525,
+    "email": "catalina@gmail.com",
+    "password": "$2b$10$KexWUVNvAX6caVd4fYHHHu35WY7oE/wZTDRb7rUfbFyFXzpunoeJ2"
+  },
+  {
+    "id": 1737736947622,
+    "email": "catalina@gmail.com",
+    "password": "$2b$10$9jSoTNfktfscHQ.JN/VkyuJ0DE2zZ6QJ3FU6xMApcN3wKbCuaB2mu"
+  },
+  {
+    "id": 1737737435633,
+    "email": "eve@gmail.com",
+    "password": "$2b$10$IOpL.V02.SBafPc5Pbg0eeqI/ZlUZJlUUaXz74sKwpIa0D3COQyx6"
+  },
+  {
+    "id": 1737737622382,
+    "email": "eve2@gmail.com",
+    "password": "$2b$10$CY9.SpXecgtVjwtcOVxxwOBSK68XDL2CVw8UEnyOXGNTXHIs5v6H2"
+  },
+  {
+    "id": 1737738510963,
+    "email": "eve3@gmail.com",
+    "password": "$2b$10$yMilC7gn4pbFlfnM2hBAuO02SJIpzkOCSvES8MTeL4YCLAcYTdN5u"
+  },
+  {
+    "id": 1737739579411,
+    "email": "eve4@gmail.com",
+    "password": "$2b$10$CkSR7zma5KD2hndfZpOXyOmqp1eaHN.bYG/TSC.fg8wm.T6ODnevq"
+  },
+  {
+    "id": 1737740254273,
+    "email": "lolo@gmail.com",
+    "password": "$2b$10$RzdyicdjR3QBuWryavLUL.xJVUzTHd1gDhYxu7u2ZWj5JNEKetnA2"
   }
 ]

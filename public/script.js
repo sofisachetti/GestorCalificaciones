@@ -240,3 +240,31 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
             alert('Error al añadir estudiante.')
         });
 });
+
+
+//////////////////// Script para formulario de Registro
+document.getElementById("registerForm").addEventListener("submit", function (e){
+    e.preventDefault();
+    const email =document.getElementById("emailRegister").value;
+    const password = document.getElementById("passwordRegister").value;
+
+    fetch("http://localhost:3000/students/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({email, password})
+    })
+    .then(response => response.json)
+    .then(data => {
+if(data === "Registro del usuario con éxito "){
+    alert("Usuario registrado con exito!")
+}else{
+    alert("Error al registrar usuario.")
+}
+    })
+    .catch(error => {
+        console.log("Error de registro-catch script", error);
+alert("Hubo un error al registrar el usuario, intente nuevamente.")
+    });
+});

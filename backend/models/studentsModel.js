@@ -68,21 +68,22 @@ const deleteStudent = (id) => {
 }
 
 //Función para registtrar un usuario
-const registerStudent = async (email, password) => {
-    if (!email || !password) {
-        return ' Campos incompletos'
-    }
+const registerUser = async (email, password) => {
+      
     const dataUser = JSON.parse(fs.readFileSync(dataUsersPath))
     const userExists = dataUser.find((user) => user.email === email)
-    if (userExists) {
-        return 'El usuario ya esta registrado'
+    if (!userExists) {
+        const hashPassword = await bcrypt.hash(password, 10)
+        const newUser = { id: Date.now(), email, password: hashPassword }
+        dataUser.push(newUser)
+        fs.writeFileSync(dataUsersPath, JSON.stringify(dataUser, null, 2), 'utf-8')
+        console.log('Usuario registrado con éxito');
+        return 'Usuario registrado con éxito';
+        
     }
-    const hashPassword = await bcrypt.hash(password, 10)
-    const newUser = { id: Date.now(), email, password: hashPassword }
-    dataUser.push(newUser)
-    fs.writeFileSync(dataUsersPath, JSON.stringify(dataUser, null, 2), 'utf-8')
-    return 'Usuario registrado con éxito'
-}
+        console.log("Usuario ya existe")
+    }
+
 
 //Para iniciar sesion
 const loginUser = async (email, password) => {
@@ -114,6 +115,6 @@ module.exports = {
     getStudentById,
     updateStudent,
     deleteStudent,
-    registerStudent,
+    registerUser,
     loginUser
 }
