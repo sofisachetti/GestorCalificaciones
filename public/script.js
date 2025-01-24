@@ -98,11 +98,11 @@ document.getElementById("cancelBtn4").addEventListener("click", function () {
 });
 
 // Ocultar el formulario si se hace clic en "Añadir"
-document.getElementById("btnEliminar").addEventListener("click", function () {
+document.getElementById("btnEdit").addEventListener("click", function () {
     document.getElementById("editStudentByIdForm").style.display = "none";
 });
 
-document.getElementById("editStudentByIdForm").addEventListener("submit", function (e) {
+document.getElementById("editStudentForm").addEventListener("submit", function (e) {
     e.preventDefault();
     const id = document.getElementById("idEdit").value;
     const name = document.getElementById("nameEdit").value;
@@ -128,10 +128,13 @@ document.getElementById("editStudentByIdForm").addEventListener("submit", functi
     })
         .then(response => response.json())
         .then(data => {
+            if(data.id === undefined || !data){
+                alert('Error al actualizar estudiante. Verificar LOGIN.')
+            }else{
             alert('Estudiante actualizad con exito.')
             console.log(data);
             document.getElementById("editStudentByIdForm").style.display = "none";
-        })
+        }})
         .catch.error(error => {
             console.log('Error: ', error);
             alert('Error al actualizar el estudiante.')
@@ -169,7 +172,7 @@ document.getElementById("eliminateStudentByIdForm").addEventListener("submit", f
         .then(response => response.json())
         .then(data => {
             if (data.id === undefined) {
-                alert("Error al eliminar estudiante")
+                alert("Error al eliminar estudiante. Verificar LOGIN.")
             } else {
                 console.log(data);
                 alert("El estudiante ha sido eliminado exitosamente");
@@ -196,7 +199,7 @@ document.getElementById("cancelBtn6").addEventListener("click", function () {
 
 
 // Manejar la acción de envío del formulario
-document.getElementById("addStudentForm").addEventListener("submit", function (e) {
+document.getElementById("studentForm").addEventListener("submit", function (e) {
     e.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
 
     // Obtener los datos del formulario para crear un objeto para enviar en POST
@@ -223,9 +226,14 @@ document.getElementById("addStudentForm").addEventListener("submit", function (e
     })
         .then(response => response.json)
         .then(data => {
-            alert('Estudiante añadido con exito.')
-            console.log(data);
-            document.getElementById("addStudentForm").style.display = "none";
+            if(data.id === undefined || !data ){
+                alert('Error al añadir estudiante. Verificar LOGIN.')
+                document.getElementById("addStudentForm").style.display = "none";
+            }else{
+                alert('Estudiante añadido con exito.')
+                console.log(data.name);
+                document.getElementById("addStudentForm").style.display = "none";
+            }
         })
         .catch.error(error => {
             console.log('Error: ', error);
