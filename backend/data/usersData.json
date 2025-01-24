@@ -83,5 +83,30 @@
     "id": 1737740254273,
     "email": "lolo@gmail.com",
     "password": "$2b$10$RzdyicdjR3QBuWryavLUL.xJVUzTHd1gDhYxu7u2ZWj5JNEKetnA2"
+  },
+  {
+    "id": 1737741835976,
+    "email": "lala@gmail.com",
+    "password": "$2b$10$GRSYlOxBAcZgyK1Eyqrgx.EoynDfJx1THu5JMJdjk7ObZi/K2Vnf6"
+  },
+  {
+    "id": 1737742142865,
+    "email": "tuti@gmail.com",
+    "password": "$2b$10$iFZ4D9/pehg4JDQeP4OdV.xlVtf6KB/m59NcpNv.m5abdWzrDLRAK"
+  },
+  {
+    "id": 1737742508214,
+    "email": "musa@gmail.com",
+    "password": "$2b$10$HZv1lCXhsu1EXYWJ8zkDbuDDI5xwQX0U7vjJMqZY2Onmkq2qjtKdi"
+  },
+  {
+    "id": 1737742726226,
+    "email": "lili@gmail.com",
+    "password": "$2b$10$e7cYlvV2C/o5eloFxArzx.N88D.0.GELEo07IamufGCMTirqBjMIO"
+  },
+  {
+    "id": 1737742836712,
+    "email": "fefo@gmail.com",
+    "password": "$2b$10$dLNVW2h/Z1accEyniVQ6X.h0.cL7UEWvlJ3VGlr2jqavAOUPSD6pm"
   }
 ]

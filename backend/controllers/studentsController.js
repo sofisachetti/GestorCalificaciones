@@ -45,22 +45,19 @@ const deleteStudent = (req, res) => {
 }
 
 //Función para registar un usuario
-const registerUser = (req, res) => {
+const registerUser = async (req, res) => {
     const { email, password } = req.body
     if (!email || !password) {
-            console.log("Campos incompletos");        
-            return res.status(400).json({message:"Campos incompletos."});
-        }
-    const resModel = studentsModel.registerUser(email,password)
-    if(!resModel){
-        res.status(400).json({message:"Usuario ya existe"});
-    } else{
-        res.status(201).json({message:`Registro del usuario con éxito `})
-    }       
-
+        console.log("Campos incompletos");        
+        return res.status(400).send("Campos incompletos.");
     }
-
-    
+    const resModel = await studentsModel.registerUser(email,password)
+    if(resModel == "Usuario ya registrado con ese email."){
+        res.status(400).send("Usuario ya existe");
+    } else{
+        res.status(201).send("Registro del usuario con éxito")
+    }       
+}
 
 //Función de inicio de sesión
 const loginUser = async (req,res) => {

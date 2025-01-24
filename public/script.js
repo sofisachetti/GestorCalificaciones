@@ -255,16 +255,18 @@ document.getElementById("registerForm").addEventListener("submit", function (e){
         },
         body: JSON.stringify({email, password})
     })
-    .then(response => response.json)
+    //.then(response => response.json)
     .then(data => {
-if(data === "Registro del usuario con éxito "){
-    alert("Usuario registrado con exito!")
-}else{
-    alert("Error al registrar usuario.")
-}
+        console.log(data);
+        
+        if(data.status === 201){
+            alert("Usuario registrado con exito!")
+        }else if (data.status === 400) {
+            alert("El usuario ya existe.")
+        } 
     })
     .catch(error => {
         console.log("Error de registro-catch script", error);
-alert("Hubo un error al registrar el usuario, intente nuevamente.")
+        alert("Hubo un error al registrar el usuario, intente nuevamente.")
     });
 });

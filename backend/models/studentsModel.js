@@ -69,20 +69,20 @@ const deleteStudent = (id) => {
 
 //Función para registtrar un usuario
 const registerUser = async (email, password) => {
-      
     const dataUser = JSON.parse(fs.readFileSync(dataUsersPath))
     const userExists = dataUser.find((user) => user.email === email)
-    if (!userExists) {
+    if (userExists === undefined) {
         const hashPassword = await bcrypt.hash(password, 10)
         const newUser = { id: Date.now(), email, password: hashPassword }
         dataUser.push(newUser)
         fs.writeFileSync(dataUsersPath, JSON.stringify(dataUser, null, 2), 'utf-8')
         console.log('Usuario registrado con éxito');
         return 'Usuario registrado con éxito';
-        
-    }
+    } else {
         console.log("Usuario ya existe")
+        return "Usuario ya registrado con ese email."
     }
+}
 
 
 //Para iniciar sesion
