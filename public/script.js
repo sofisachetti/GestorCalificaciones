@@ -114,7 +114,7 @@ document.getElementById("editStudentForm").addEventListener("submit", function (
         name: name,
         course: course,
         role: role,
-        notes: notes.split(",")  // VER PORQUÈ CUANDO AGREGAMOS NOTAS NO LAS IMPRIME COMO ARRAY SINO COMO STRING???
+        notes: notes.split(" ")  // formato que debe escribirse este campo["modulo2=7","modulo3=10"]
     };
     let studentDataJson = JSON.stringify(studentData);
 
