@@ -48,9 +48,9 @@ const updateStudent = (id, newData) => {
     if (!student) {
         return "Estudiante no encontrado."
     } else {
-        if (newData.notes) {
-            newData.notes = [...student.notes, ...newData.notes]; // Agrego este if, para q agregue las notas y no las sobreescriba
-        }
+        // if (newData.notes) {
+        //     newData.notes = [...student.notes, ...newData.notes]; // Agrego este if, para q agregue las notas y no las sobreescriba
+        // }
         const newStudent = { ...student, ...newData }
         const i = studentsList.indexOf(student)
         studentsList[i] = newStudent

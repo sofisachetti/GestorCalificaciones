@@ -1,6 +1,6 @@
 const PORT = 3000;
 
-///////////////////// Script para metodo GET ALL STUDENTS
+///////////////////// Script para metodo GET ALL STUDENTS - ES DE ACCESO LIBRE - FUNCIONA
 //Aca lo q hace es decirte que cuando haga click en el elemtno con el id allStudentID(ver en html) va a hacer la peticion a la url del back que figura en el fetch. La peticion viaja al back, entra en la ruta /students, pasa al controler.. de ahi pasa al model, hace la logica del model y nos devuelve el json con todos los estudiantes(eso es lo q nos manda el back). ese json de estudiantes entra de nuevo aca al script y se trata como DATA. Por cada estudiante (forEach) de la lista, se va a imprimir en el html una tarjetita con los datos (card). Ese modelo de card lo saque de la libreria boostrap, y despues si le hice modificaciones de tamaños colores etc con el css para q quede bien.
 document.getElementById("allStudentsbtn").addEventListener("click", function () {
     fetch(`http://localhost:3000/students`)
@@ -28,7 +28,7 @@ document.getElementById("allStudentsbtn").addEventListener("click", function () 
         });
 });
 
-///////////////////// Script para metodo GET STUDENTS BY ID
+///////////////////// Script para metodo GET STUDENTS BY ID - ES DE ACCESO LIBRE  - FUNCIONA
 
 //En este caso, primero hice un formulario donde le pvamos a pedir al usuario q ponga el id que quiere buscar. Ese formulario esta en el html, pero si ven dentro de la etiqueta del formulario html van a ver que dice, style.display = none, que quiere decir que esa parte va a estar oculta en el html principal. Aca, en el script yo le digo que:
 //Cuando haga click en el elemento studentById, me despliegue ese formulario que estaba oculto, cambiandole su style.display a BLOCK que es visible.
@@ -87,7 +87,7 @@ document.getElementById("studentForm1").addEventListener("submit", function (e) 
 
 
 
-////////////////// Script para metodo PUT-UPDATE STUDENT
+////////////////// Script para metodo PUT-UPDATE STUDENT - RUTA PROTEGIDA
 document.getElementById("editStudentByIdbtn").addEventListener("click", function () {
     document.getElementById("editStudentByIdForm").style.display = "block";
 });
@@ -99,47 +99,66 @@ document.getElementById("cancelBtn4").addEventListener("click", function () {
 
 // Ocultar el formulario si se hace clic en "Añadir"
 document.getElementById("btnEdit").addEventListener("click", function () {
-    document.getElementById("editStudentByIdForm").style.display = "none";
+    document.getElementById("editStudentByIdForm").style.display = "block";
 });
 
-document.getElementById("editStudentForm").addEventListener("submit", function (e) {
+document.getElementById("editStudentForm").addEventListener("submit", async function (e) {
     e.preventDefault();
+
     const id = document.getElementById("idEdit").value;
     const name = document.getElementById("nameEdit").value;
     const course = document.getElementById("courseEdit").value;
     const role = document.getElementById("roleEdit").value;
     const notes = document.getElementById("notesEdit").value;
 
-    let studentData = {
-        name: name,
-        course: course,
-        role: role,
-        notes: notes.split(" ")  // formato que debe escribirse este campo["modulo2=7","modulo3=10"]
-    };
-    let studentDataJson = JSON.stringify(studentData);
+    try {
+        // Obtener datos actuales del estudiante
+        const response = await fetch(`http://localhost:3000/students/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "authorization": window.sessionStorage.getItem('token')
+            }
+        });
 
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`)
+        }
 
-    fetch(`http://localhost:3000/students/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: studentDataJson
-    })
-        .then(response => response.json())
-        .then(data => {
-            if(data.id === undefined || !data){
-                alert('Error al actualizar estudiante. Verificar LOGIN.')
-            }else{
-            alert('Estudiante actualizad con exito.')
-            console.log(data);
-            document.getElementById("editStudentByIdForm").style.display = "none";
-        }})
-        .catch.error(error => {
-            console.log('Error: ', error);
-            alert('Error al actualizar el estudiante.')
-        })
+        const currentData = await response.json
 
+        // Combinar los datos actuales con los que actualizamos
+        const updatedData = {
+            ...currentData,
+            ...(name && { name }),
+            ...(course && { course }),
+            ...(role && { role }),
+            ...(notes && { notes: notes.split(" ") }),
+        };
+
+        // Envia datos combinados al back
+        const updateResponse = await fetch(`http://localhost:3000/students/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                "authorization": window.sessionStorage.getItem('token')
+            },
+            body: JSON.stringify(updatedData)
+        });
+
+        if (!updateResponse.ok) {
+            throw new Error(`Error al actualizar estudiante: ${updateResponse.status}`);
+        }
+
+        const result = await updateResponse.json();
+
+        alert('Estudiante actualizado con exito.')
+        document.getElementById("editStudentByIdForm").style.display = "none";
+        
+    } catch (error) {
+        console.error('Error al editar estudiante: ', error);
+        alert('Error al actualizar el estudiante.');
+    }
 });
 
 

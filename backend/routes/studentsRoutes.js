@@ -17,7 +17,7 @@ router.post('/', middlewareValidate.validateStudent, middlewareAuthenticateToken
 // Metodo GET para obtener un estudiante segun su ID
 router.get('/:id', studentsController.getStudentById)
 
-// Metodo PUT para actualizar un estudiante segun si ID // RUTA PROTEGIDA
+// Metodo PUT para actualizar un estudiante segun su ID // RUTA PROTEGIDA
 router.put('/:id',middlewareAuthenticateToken.authenticateToken, studentsController.updateStudent)
 
 // Metodo DELETE para eliminar un estudiante por su ID / RUTA PROTEGIDA

@@ -1,10 +1,10 @@
 [
   {
     "id": 5,
-    "name": "Vicky",
+    "name": "Carla",
     "course": "Backend",
     "role": "student",
-    "notes": "9"
+    "notes": 10
   },
   {
     "id": 6,
