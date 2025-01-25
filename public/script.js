@@ -167,21 +167,27 @@ document.getElementById("eliminateStudentByIdForm").addEventListener("submit", f
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
+            "authorization": window.sessionStorage.getItem('token')
         }
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`)
+            }
+            return response.json()
+        })
         .then(data => {
-            if (data.id === undefined) {
-                alert("Error al eliminar estudiante. Verificar LOGIN.")
-            } else {
+            if (data == "Estudiante eliminado") {
                 console.log(data);
                 alert("El estudiante ha sido eliminado exitosamente");
                 document.getElementById("eliminateStudentByIdForm").style.display = "none";
-            }
+            } else if (data == 'Error. El ID del estudiante no existe.') {
+                alert("El ID del estudiante no existe.")
+            } 
         })
         .catch(error => {
             console.log('Error: ', error);
-            alert("Error al eliminar el estudiante");
+            alert("Error en el catch");
         });
 });
 
@@ -221,10 +227,11 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
 
         headers: {
             'Content-Type': 'application/json',
+            "authorization": window.sessionStorage.getItem('token')
         },
         body: studenDataJson,
     })
-        .then(response => response.json)
+        .then(response => response.json())
         .then(data => {
             if(data.id === undefined || !data ){
                 alert('Error al añadir estudiante. Verificar LOGIN.')
@@ -255,7 +262,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e){
         },
         body: JSON.stringify({email, password})
     })
-    .then(response => response.json)
+    .then(response => response.json())
     .then(data => {
         if(data.status === 201){
             alert("Usuario registrado con exito!")
@@ -283,15 +290,30 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         body: JSON.stringify({email, password})
     })
 
-    //.then(response => response.json)
+    .then(response => response.json())
     .then(data => {
-        console.log(data.headers);
+        console.log(data);
+        if(!data.token) {
+            console.error('Token no proporcionado')
+        }
+
+        const partsToken = data.token.split('.')
+
+        const payload = partsToken[1]
+        window.sessionStorage.setItem('token', payload)
+
+        // if (data.token) {
+        //     window.sessionStorage.setItem('token', data.token)
+        //     console.log('Token alamcenado correctamente');
+        // } else {
+        //     console.error("Error: No se recibió un token.");
+        // }
+
         if (data.status === 400) {
             alert("Error. Corroborar email y contraseña ingresados.")
         } else if (data.status === 200) {
             alert("Inicio de sesion exitoso.")
         }
-        
     })
     .catch(error => {
         console.log("Error de login-catch script", error);

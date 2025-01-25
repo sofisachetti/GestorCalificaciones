@@ -40,8 +40,8 @@ const updateStudent = (req, res) => {
 // Funcion para eliminar un estudiante
 const deleteStudent = (req, res) => {
     const { id } = req.params
-    studentsModel.deleteStudent(id)
-    res.json({ message: 'Estudiante eliminado con exito' })
+    return studentsModel.deleteStudent(id)
+    //res.json({ message: 'Estudiante eliminado con exito' })
 }
 
 //Función para registar un usuario
@@ -66,6 +66,7 @@ const loginUser = async (req,res) => {
     if(!result){
         return res.status(400).json({message: `Email o contraseña no coinciden`});
     }       
+    req.token = result
     return res.status(200).json({message: 'Inicio de sesión exitoso', token: result})
 }
 

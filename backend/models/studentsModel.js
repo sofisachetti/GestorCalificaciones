@@ -61,10 +61,18 @@ const updateStudent = (id, newData) => {
 
 // Funcion para eliminar un estudiante
 const deleteStudent = (id) => {
-    let studentsList = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-    let newStudentList = studentsList.filter(s => s.id !== parseInt(id))
-    fs.writeFileSync(dataPath, JSON.stringify(newStudentList, null, 2), 'utf-8')
-    return "Estudiante eliminado"
+    try {
+        let studentsList = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+        const studentExists = studentsList.some(s => s.id === parseInt(id)) // .some() comprueba si al menos un elemento del array cumple con la condición implementada por la función proporcionada
+        if (!studentExists) {
+            return 'Error. El ID del estudiante no existe.'
+        }
+        let newStudentList = studentsList.filter(s => s.id !== parseInt(id))
+        fs.writeFileSync(dataPath, JSON.stringify(newStudentList, null, 2), 'utf-8')
+        return "Estudiante eliminado"
+    } catch (error) {
+        return `Error al eliminar el estudiante: ${error.message}`;
+    }
 }
 
 //Función para registtrar un usuario

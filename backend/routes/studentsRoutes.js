@@ -30,7 +30,7 @@ router.post('/register',studentsController.registerUser)
 router.post('/login', studentsController.loginUser) //Saque el middleware de autenticacion de aca.. por lo q entendi hay q ponerlo en la ruta protegida
 
 //Método Ruta Protegida acceso 
-router.get('/profile', middlewareAuthenticateToken.authenticateToken, (req, res) => {
+router.post('/profile', middlewareAuthenticateToken.authenticateToken, (req, res) => {
     res.status(200).send("Ya tienes acceso a las funciones de admin.")
 })
 
