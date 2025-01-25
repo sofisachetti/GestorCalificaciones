@@ -108,5 +108,15 @@
     "id": 1737742836712,
     "email": "fefo@gmail.com",
     "password": "$2b$10$dLNVW2h/Z1accEyniVQ6X.h0.cL7UEWvlJ3VGlr2jqavAOUPSD6pm"
+  },
+  {
+    "id": 1737839653630,
+    "email": "momo@gmail.com",
+    "password": "$2b$10$MDWpIS0aXQmBEZ2TLGCQdeG3DVAA3rQgd2HN6ZW3MpED8sHWWocfe"
+  },
+  {
+    "id": 1737840163760,
+    "email": "lulu@gmail.com",
+    "password": "$2b$10$UGyzIajpX0BcCyGSA20SsOwC94gcHHeZhbmC9w4On0pwj3wiQDwIC"
   }
 ]

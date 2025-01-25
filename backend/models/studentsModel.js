@@ -60,10 +60,10 @@ const updateStudent = (id, newData) => {
 }
 
 // Funcion para eliminar un estudiante
-const deleteStudent = (id) => {
+const deleteStudent = async (id) => {
     try {
         let studentsList = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-        const studentExists = studentsList.some(s => s.id === parseInt(id)) // .some() comprueba si al menos un elemento del array cumple con la condición implementada por la función proporcionada
+        const studentExists =  await studentsList.some(s => s.id === parseInt(id)) // .some() comprueba si al menos un elemento del array cumple con la condición implementada por la función proporcionada
         if (!studentExists) {
             return 'Error. El ID del estudiante no existe.'
         }
@@ -95,22 +95,24 @@ const registerUser = async (email, password) => {
 
 //Para iniciar sesion
 const loginUser = async (email, password) => {
-    if (!email || !password) {
-        return 'Campos incompletos'
-    }
+
     const dataUser = JSON.parse(fs.readFileSync(dataUsersPath, 'utf-8'))
     const user = dataUser.find((u) => u.email === email)
-    if (!user) {
-        return 'No encontrado'
+
+    if (user === undefined) {
+        return 'Usuario no encontrado'
     }
+
     const isPasswordValid = await bcrypt.compare(password, user.password)
+
     if (!isPasswordValid) {
-        return 'Contraseña incorrecta'
+        return 'Contrasena incorrecta'
     }
+
     //Generar token
     const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, { expiresIn: '1h' })
     if(!token){
-        console.log('error al generar token');        
+        return 'Error al generar token'        
     }
     console.log(token);
     return token;

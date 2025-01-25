@@ -38,10 +38,10 @@ const updateStudent = (req, res) => {
 }
 
 // Funcion para eliminar un estudiante
-const deleteStudent = (req, res) => {
+const deleteStudent = async (req, res) => {
     const { id } = req.params
-    return studentsModel.deleteStudent(id)
-    //res.json({ message: 'Estudiante eliminado con exito' })
+    const result = await studentsModel.deleteStudent(id)
+    return res.json({ message: `${result}` })
 }
 
 //Función para registar un usuario
@@ -53,9 +53,9 @@ const registerUser = async (req, res) => {
     }
     const resModel = await studentsModel.registerUser(email,password)
     if(resModel == "Usuario ya registrado con ese email."){
-        res.status(400).send("Usuario ya existe");
+        res.status(400).json({message: "Usuario ya existe"});
     } else{
-        res.status(201).send("Registro del usuario con éxito")
+        res.status(201).json({message: "Registro del usuario con éxito"})
     }       
 }
 
@@ -63,9 +63,13 @@ const registerUser = async (req, res) => {
 const loginUser = async (req,res) => {
     const {email,password} = req.body
     const result = await studentsModel.loginUser(email, password) 
-    if(!result){
-        return res.status(400).json({message: `Email o contraseña no coinciden`});
-    }       
+    if(result === 'Usuario no encontrado') {
+        return res.status(404).json({message: 'Email no registrado.'});
+    } else if (result === 'Contrasena incorrecta') {
+        return res.status(400).json({message: 'Contrasena incorrecta.'});
+    } else if (result === 'Error al generar token') {
+        return res.status(400).json({message: 'Error al generar token.'});
+    }
     req.token = result
     return res.status(200).json({message: 'Inicio de sesión exitoso', token: result})
 }

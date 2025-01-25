@@ -109,7 +109,11 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
     const name = document.getElementById("nameEdit").value;
     const course = document.getElementById("courseEdit").value;
     const role = document.getElementById("roleEdit").value;
-    const notes = document.getElementById("notesEdit").value;
+    let notes = document.getElementById("notesEdit").value;
+
+    // Pasamos las data de notas que entra como string a un array de notas
+    const arrayNotes = notes.split(' ')
+    notes = arrayNotes.map(nota => parseInt(nota))
 
     try {
         // Obtener datos actuales del estudiante
@@ -125,7 +129,7 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
             throw new Error(`Error HTTP: ${response.status}`)
         }
 
-        const currentData = await response.json
+        const currentData = await response.json()
 
         // Combinar los datos actuales con los que actualizamos
         const updatedData = {
@@ -133,7 +137,7 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
             ...(name && { name }),
             ...(course && { course }),
             ...(role && { role }),
-            ...(notes && { notes: notes.split(" ") }),
+            ...(notes && { notes }),
         };
 
         // Envia datos combinados al back
@@ -154,7 +158,7 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
 
         alert('Estudiante actualizado con exito.')
         document.getElementById("editStudentByIdForm").style.display = "none";
-        
+
     } catch (error) {
         console.error('Error al editar estudiante: ', error);
         alert('Error al actualizar el estudiante.');
@@ -162,7 +166,7 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
 });
 
 
-///////////////// Script para metodo DELETE-ELIMINAR STUDENT
+///////////////// Script para metodo DELETE-ELIMINAR STUDENT - RUTA PROTEGIDA - FUNCIONA
 
 document.getElementById("eliminateStudentbtnn").addEventListener("click", function () {
     document.getElementById("eliminateStudentByIdForm").style.display = "block";
@@ -196,13 +200,12 @@ document.getElementById("eliminateStudentByIdForm").addEventListener("submit", f
             return response.json()
         })
         .then(data => {
-            if (data == "Estudiante eliminado") {
-                console.log(data);
+            if (data.message === "Estudiante eliminado") {
                 alert("El estudiante ha sido eliminado exitosamente");
                 document.getElementById("eliminateStudentByIdForm").style.display = "none";
-            } else if (data == 'Error. El ID del estudiante no existe.') {
+            } else if (data.message === 'Error. El ID del estudiante no existe.') {
                 alert("El ID del estudiante no existe.")
-            } 
+            }
         })
         .catch(error => {
             console.log('Error: ', error);
@@ -233,11 +236,15 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
     const role = document.getElementById("addRole").value;
     const notes = document.getElementById("addNotes").value;
 
+    // Pasamos los datos que entran como texto a un array de notas
+    const arrayNotes = notes.split(' ')
+    const newNotes = arrayNotes.map(nota => parseInt(nota))
+
     let studentData = {
         name: name,
         course: course,
         role: role,
-        notes: notes
+        notes: newNotes
     }
     let studenDataJson = JSON.stringify(studentData);
 
@@ -252,8 +259,8 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
     })
         .then(response => response.json())
         .then(data => {
-            if(data.id === undefined || !data ){
-                alert('Error al añadir estudiante. Verificar LOGIN.')
+            if(!data){
+                alert('Error al añadir estudiante.')
                 document.getElementById("addStudentForm").style.display = "none";
             }else{
                 alert('Estudiante añadido con exito.')
@@ -261,17 +268,17 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
                 document.getElementById("addStudentForm").style.display = "none";
             }
         })
-        .catch.error(error => {
-            console.log('Error: ', error);
+        .catch(error => {
+            console.error('Error: ', error);
             alert('Error al añadir estudiante.')
         });
 });
 
 
 //////////////////// Script para formulario de Registro
-document.getElementById("registerForm").addEventListener("submit", function (e){
+document.getElementById("registerForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    const email =document.getElementById("emailRegister").value;
+    const email = document.getElementById("emailRegister").value;
     const password = document.getElementById("passwordRegister").value;
 
     fetch("http://localhost:3000/students/register", {
@@ -283,9 +290,9 @@ document.getElementById("registerForm").addEventListener("submit", function (e){
     })
     .then(response => response.json())
     .then(data => {
-        if(data.status === 201){
+        if (data.message === "Registro del usuario con éxito") {
             alert("Usuario registrado con exito!")
-        }else if (data.status === 400) {
+        } else {
             alert("El usuario ya existe.")
         } 
     })
@@ -311,31 +318,25 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        
+        // Validaciones de token
         if(!data.token) {
             console.error('Token no proporcionado')
         }
 
-        const partsToken = data.token.split('.')
-
-        const payload = partsToken[1]
-        window.sessionStorage.setItem('token', payload)
-
-        // if (data.token) {
-        //     window.sessionStorage.setItem('token', data.token)
-        //     console.log('Token alamcenado correctamente');
-        // } else {
-        //     console.error("Error: No se recibió un token.");
-        // }
-
-        if (data.status === 400) {
-            alert("Error. Corroborar email y contraseña ingresados.")
-        } else if (data.status === 200) {
-            alert("Inicio de sesion exitoso.")
+        if (data.message === 'Email no registrado.') {
+            alert("Error. El email no está registrado o es incorrecto.")
+        } else if (data.message === 'Contrasena incorrecta') {
+            alert("Error. La contraseña es incorrecta.")
+        } else {
+            const partsToken = data.token.split('.')
+            const payload = partsToken[1]
+            window.sessionStorage.setItem('token', payload)    
+            alert("Inicio de sesión exitoso!")
         }
     })
     .catch(error => {
-        console.log("Error de login-catch script", error);
+        console.error("Error de login-catch script", error);
         alert("Hubo un error al ingresar, intente nuevamente.")
     })
 })
