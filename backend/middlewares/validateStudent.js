@@ -1,3 +1,5 @@
+// Middleware para validar que los datos del estudiante estén completos
+
 const validateStudent = (req, res, next) => {
     const { name, course, role, notes } = req.body
     if (!name || !course || !role || !notes) {

@@ -13,6 +13,7 @@ h1 {
     font-size: 2.5em;
     color: #CD045F;
 }
+
 h5{
     font-size: 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -42,12 +43,11 @@ form {
     margin-top: 20px;
 }
 
- .form-label {
+.form-label {
     width: 100%;
     font-weight: bold;
     color: #495057;
 } 
-
 
 .form-control {
     border-radius: 4px;
@@ -94,7 +94,7 @@ button:hover {
     padding: 10px;
     background-color: #fcdfcc;
     justify-content: center;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    flex-wrap: wrap;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    flex-wrap: wrap;
     justify-content: space-around;
 }
 
@@ -140,23 +140,25 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
     width: 300px;
     height: 300px;
 }
+
 .form-label-ID{
     width: 100%;
     font-weight: bold;
     color: #7a7a7a;
     background-color: antiquewhite;
     margin-bottom: 5px;
-text-align: center;
+    text-align: center;
 }
+
 #studentByIdContainer{
     width: 100%;
     height: 100%;
 }
-.card-getById{
 
-width: 50%;
-background-color: antiquewhite;
-justify-self: center;
+.card-getById{
+    width: 50%;
+    background-color: antiquewhite;
+    justify-self: center;
 }
 
 

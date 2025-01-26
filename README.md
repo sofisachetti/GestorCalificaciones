@@ -1,8 +1,8 @@
-# Gestor de Estudiantes y Notas
+# Gestor de Estudiantes y Notas 📝
 
 Este proyecto es una API Rest desarrollada con JavaScript para la de gestión de estudiantes que permite, por un lado, a lxs profesores registrar, buscar, actualizar información, agregar notas y eliminar estudiantes, y por otro lado, a lxs estudiantes ver sus calificaciones.
 
-## Tecnologías usadas:
+## Tecnologías utilizadas:
 
 - **Node.js**
 - **Express.js**
@@ -32,11 +32,11 @@ Es el punto de entrada del servidor. Acá se incorporaron:
 Se definieron las funciones para manejar las solicitudes relacionadas con estudiantes y usuarios:
 
 - **Obtener estudiantes (********`getStudents`********)**: Retorna todxs lxs estudiantes con su respectiva información. Permite que profesores y estudiantes vean la información pública de los estudiantes.
-- **Añadir estudiante (********`addStudent`********)**: Toma los datos de la solicitud, los guarda en la base de datos (`studentsData.json`) y devuelve un mensaje de éxito si se completaron los datos correctamente.
+- **Añadir estudiante (********`addStudent`********)**: Toma los datos de la solicitud, los guarda en la base de datos (`studentsData.json`) y devuelve un mensaje de éxito si se completaron los datos correctamente. Esta función está disponible para los usuarios registrados como administradores (en este caso, serían lxs docentes).
 - **Buscar estudiante por ID (********`getStudentById`********)**: Busca unx estudiante en la base de datos usando su ID y muestra su ficha.
-- **Actualizar estudiante (********`updateStudent`********)**: Actualiza estudiantes, modificando sus datos con los enviados en el cuerpo de la solicitud y guarda los cambios en `studentsData.json`.
-- **Eliminar estudiante (********`deleteStudent`********)**: Elimina estudiantes desde su ID.
-- **Registrar usuario (********`registerStudent`********)**: Registra un nuevo usuario (profesor o estudiante).
+- **Actualizar estudiante (********`updateStudent`********)**: Actualiza estudiantes, modificando sus datos con los enviados en el cuerpo de la solicitud y guarda los cambios en `studentsData.json`. Esta función está disponible para los usuarios registrados como administradores.
+- **Eliminar estudiante (********`deleteStudent`********)**: Elimina estudiantes desde su ID. Esta función está disponible para los usuarios registrados como administradores. 
+- **Registrar usuario (********`registerUser`********)**: Registra un nuevo usuario (docente).
 - **Logear usuario (********`loginUser`********)**: Permite iniciar sesión.
 
 ---
@@ -51,7 +51,11 @@ Se definieron las funciones para manejar las solicitudes relacionadas con estudi
    ```bash
    npm install express bcrypt zod dotenv body-parser cors
    ```
-3. Ejecutar el servidor:
+3. Ubicarse en la carpeta 'backend/':
+   ```bash
+   cd backend/
+   ```
+4. Ejecutar el servidor:
    ```bash
    node index.js
    ```
@@ -89,6 +93,6 @@ Cuenta con:
 ### **5 botones:**
 - **Ver Estudiantes**: Despliega las fichas de todos los estudiantes.
 - **Buscar estudiante por ID**: Despliaga un cuadro de texto para ingresar el ID y un botón de búsqueda.
-- **Editar estudiante**: Despliega cuadros de texto para ingresar los nuevos datos.
+- **Editar estudiante**: Despliega cuadros de texto para ingresar los nuevos datos. En el recuadro de 'Notas' se deben incluir todas las nuvas notas ingresadas en formato de números enteros, separados por espacios.
 - **Eliminar estudiante**: Despliaga un cuadro de texto para ingresar el ID del usuario que se quiere eliminar.
-- **Añadir estudiante**: Despliega cuadros de texto para ingresar los datos del nuevo estudiante.
+- **Añadir estudiante**: Despliega cuadros de texto para ingresar los datos del nuevo estudiante. En el recuadro de 'Notas' se deben incluir todas las notas en formato de números enteros, separados por espacios.

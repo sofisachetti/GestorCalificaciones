@@ -1,13 +1,10 @@
 // Importamos el Modelo
-
 const studentsModel = require('../models/studentsModel')
-const jwt =require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
-
-
-//Cargar variable de entorno para la clave secreta del token 
+// Cargar variable de entorno para la clave secreta del token 
 require('dotenv').config();
-const SECRET_KEY = process.env.SECRET_KEY || 'secretKey123';//clave secreta para JWT
+const SECRET_KEY = process.env.SECRET_KEY || 'secretKey123'; //clave secreta para JWT
 
 // Funcion para manejar la solicitud de obtener todos los alumnos
 const getStudents = (req, res) => {
@@ -37,7 +34,7 @@ const updateStudent = (req, res) => {
     res.status(200).json({ message: 'Estudiante actualizado con exito.' })
 }
 
-// Funcion para eliminar un estudiante
+// Funcion para eliminar un estudiante por ID
 const deleteStudent = async (req, res) => {
     const { id } = req.params
     const result = await studentsModel.deleteStudent(id)
@@ -59,7 +56,7 @@ const registerUser = async (req, res) => {
     }       
 }
 
-//Función de inicio de sesión
+// Función de inicio de sesión
 const loginUser = async (req,res) => {
     const {email,password} = req.body
     const result = await studentsModel.loginUser(email, password) 

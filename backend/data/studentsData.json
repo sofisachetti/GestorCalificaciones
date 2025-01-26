@@ -4,14 +4,22 @@
     "name": "Eve",
     "course": "Backend",
     "role": "student",
-    "notes": "10"
+    "notes": [
+      7,
+      8,
+      9
+    ]
   },
   {
     "id": 2,
     "name": "Pipo",
     "course": "Frontend",
     "role": "student",
-    "notes": "7 8 9"
+    "notes": [
+      7,
+      8,
+      9
+    ]
   },
   {
     "id": 3,
@@ -19,9 +27,9 @@
     "course": "Backend",
     "role": "student",
     "notes": [
-      "6",
-      "7",
-      "8"
+      7,
+      8,
+      9
     ]
   },
   {
@@ -30,9 +38,9 @@
     "course": "Backend",
     "role": "student",
     "notes": [
-      "6",
-      "7",
-      "8"
+      7,
+      8,
+      9
     ]
   },
   {
@@ -52,19 +60,25 @@
     "course": "Backend",
     "role": "student",
     "notes": [
-      "7",
-      "8",
-      "9"
-    ],
-    "newNotes": [
+      7,
       8,
-      9,
-      10
+      9
     ]
   },
   {
     "id": 7,
     "name": "Berni",
+    "course": "Backend",
+    "role": "student",
+    "notes": [
+      7,
+      8,
+      9
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Sofia",
     "course": "Backend",
     "role": "student",
     "notes": [

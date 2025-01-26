@@ -1,14 +1,10 @@
-const { log } = require('console');
 const fs = require('fs');
 const path = require('path');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config();
 
-const middlewareAuthenticateToken = require('../middlewares/authenticationToken')
-
-
-const SECRET_KEY = process.env.SECRET_KEY || 'secretKey123';//clave secreta para JWT
+const SECRET_KEY = process.env.SECRET_KEY || 'secretKey123'; // Clave para JWT
 
 
 // Hacemos la ruta hacia nuestra base de datos
@@ -48,9 +44,6 @@ const updateStudent = (id, newData) => {
     if (!student) {
         return "Estudiante no encontrado."
     } else {
-        // if (newData.notes) {
-        //     newData.notes = [...student.notes, ...newData.notes]; // Agrego este if, para q agregue las notas y no las sobreescriba
-        // }
         const newStudent = { ...student, ...newData }
         const i = studentsList.indexOf(student)
         studentsList[i] = newStudent
@@ -63,10 +56,12 @@ const updateStudent = (id, newData) => {
 const deleteStudent = async (id) => {
     try {
         let studentsList = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+        
         const studentExists =  await studentsList.some(s => s.id === parseInt(id)) // .some() comprueba si al menos un elemento del array cumple con la condición implementada por la función proporcionada
         if (!studentExists) {
             return 'Error. El ID del estudiante no existe.'
         }
+
         let newStudentList = studentsList.filter(s => s.id !== parseInt(id))
         fs.writeFileSync(dataPath, JSON.stringify(newStudentList, null, 2), 'utf-8')
         return "Estudiante eliminado"
@@ -75,10 +70,12 @@ const deleteStudent = async (id) => {
     }
 }
 
-//Función para registtrar un usuario
+// Función para registrar un usuario
 const registerUser = async (email, password) => {
+
     const dataUser = JSON.parse(fs.readFileSync(dataUsersPath))
     const userExists = dataUser.find((user) => user.email === email)
+
     if (userExists === undefined) {
         const hashPassword = await bcrypt.hash(password, 10)
         const newUser = { id: Date.now(), email, password: hashPassword }
@@ -93,18 +90,16 @@ const registerUser = async (email, password) => {
 }
 
 
-//Para iniciar sesion
+// Funcion de login
 const loginUser = async (email, password) => {
-
     const dataUser = JSON.parse(fs.readFileSync(dataUsersPath, 'utf-8'))
-    const user = dataUser.find((u) => u.email === email)
 
+    const user = dataUser.find((u) => u.email === email)
     if (user === undefined) {
         return 'Usuario no encontrado'
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password)
-
     if (!isPasswordValid) {
         return 'Contrasena incorrecta'
     }
@@ -114,7 +109,6 @@ const loginUser = async (email, password) => {
     if(!token){
         return 'Error al generar token'        
     }
-    console.log(token);
     return token;
 }
 

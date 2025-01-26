@@ -1,5 +1,3 @@
-// INDEX -> en esta carpeta solamente tenemos la instanciacion de express, configuración de la ruta principal, definicion del puerto y middlewares
-
 // Importamos modulos
 const express = require('express')
 const cors = require('cors')
@@ -19,7 +17,7 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
-//app.use(cors())
+
 // Middleware para parsear el cuerpo de las solicitudes en formato JSON
 app.use(bodyParser.json())
 
