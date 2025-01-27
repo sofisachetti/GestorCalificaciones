@@ -11,9 +11,13 @@ function authenticateToken(req, res, next) {
         return res.status(401).json({ error: 'No tenes autorizacion.' });
     }
 
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = authHeader.split(' ')[1];
+
     const decodedToken = jwt.decode(token, SECRET_KEY);
 
+    if (!token) {
+        console.error("Token invalido o expirado");
+    }
     req.user = decodedToken;
     next();
 }

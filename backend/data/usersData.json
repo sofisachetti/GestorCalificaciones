@@ -18,5 +18,15 @@
     "id": 1737840163760,
     "email": "lulu@gmail.com",
     "password": "$2b$10$UGyzIajpX0BcCyGSA20SsOwC94gcHHeZhbmC9w4On0pwj3wiQDwIC"
+  },
+  {
+    "id": 1738004736976,
+    "email": "sofi@gmail.com",
+    "password": "$2b$10$2CxTu0XktyGA.XVYOGb/deutNh6yhxcBU1iiXby42Pplq3Qbz91TO"
+  },
+  {
+    "id": 1738012869782,
+    "email": "lala@gmail.com",
+    "password": "$2b$10$v3qAux/eQq8w1PLvqoWNtek4Q4jRSiM/dSejOX021HhyDw1DlDRpO"
   }
 ]

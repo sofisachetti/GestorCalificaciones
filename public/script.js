@@ -113,65 +113,39 @@ document.getElementById("btnEdit").addEventListener("click", function () {
 document.getElementById("editStudentForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    // Se extraen los valores del input y se los guarda en constantes
-    const id = document.getElementById("idEdit").value;
-    const name = document.getElementById("nameEdit").value;
-    const course = document.getElementById("courseEdit").value;
-    const role = document.getElementById("roleEdit").value;
-    let notes = document.getElementById("notesEdit").value;
+    const id = document.getElementById('idEdit').value;
+    const name = document.getElementById('nameEdit').value;
+    const course = document.getElementById('courseEdit').value;
+    const role = document.getElementById('roleEdit').value;
+    const notes = document.getElementById('notesEdit').value;
 
-    // Pasamos las data de notas que entra como string a un array de notas
-    const arrayNotes = notes.split(' ')
-    notes = arrayNotes.map(nota => parseInt(nota))
+    const updatedData = {
+    ...(name && { name }),
+    ...(course && { course }),
+    ...(role && { role }),
+    ...(notes && { notes }),
+    };
 
     try {
-        // Obtener datos actuales del estudiante
         const response = await fetch(`http://localhost:3000/students/${id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                "authorization": window.sessionStorage.getItem('token')
-            }
-        });
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + window.sessionStorage.getItem('token')
+        },
+        body: JSON.stringify(updatedData)
+    });
 
-        if (!response.ok) {
-            throw new Error(`Error HTTP: ${response.status}`)
-        }
-
-        const currentData = await response.json()
-
-        // Combinar los datos actuales con los que actualizamos
-        const updatedData = {
-            ...currentData,
-            ...(name && { name }),
-            ...(course && { course }),
-            ...(role && { role }),
-            ...(notes && { notes }),
-        };
-
-        // Envia datos combinados al back
-        const updateResponse = await fetch(`http://localhost:3000/students/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                "authorization": window.sessionStorage.getItem('token')
-            },
-            body: JSON.stringify(updatedData)
-        });
-
-        if (!updateResponse.ok) {
-            throw new Error(`Error al actualizar estudiante: ${updateResponse.status}`);
-        }
-
-        const result = await updateResponse.json();
-        alert('Estudiante actualizado con exito.')
-        document.getElementById("editStudentByIdForm").style.display = "none";
+    const result = await response.json();
+    if (response.ok) {
+        alert(result.message);
+    } else {
+        alert('Error: ' + result.message);
+    }
     } catch (error) {
-        console.error('Error al editar estudiante: ', error);
-        alert('Error al actualizar el estudiante.');
+        alert('Error al conectar con el servidor: ' + error.message);
     }
 });
-
 
 // Script para metodo DELETE - ELIMINAR STUDENT (RUTA PROTEGIDA)
 
@@ -190,39 +164,35 @@ document.getElementById("btnEliminar").addEventListener("click", function () {
 });
 
 // Menejo de los datos de la solicitud
-document.getElementById("eliminateStudentByIdForm").addEventListener("submit", function (e) {
+document.getElementById("eliminateStudentByIdForm").addEventListener("submit", async function (e) {
     e.preventDefault();
     // Se extraen los valores del input y se lo guarda en una variable que se pasa como parametro a la url del fetch
     const id = document.getElementById("idDelete").value;
 
-    fetch(`http://localhost:3000/students/${id}`, {
+    if (!id) {
+        alert('Por favor, ingresa un ID de estudiante.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/students/${id}`, {
         method: 'DELETE',
         headers: {
-            "Content-Type": "application/json",
-            // Al ser una solicitud protegida, utilizamos el token que queda almacenado en sessionStorage del navegador para validar al usuario que está realizando las solicitudes
-            // El parametro 'token' se define con el metodo .setItem() que está en la solicitud de LOGIN
-            "authorization": window.sessionStorage.getItem('token')
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + window.sessionStorage.getItem('token')
         }
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error HTTP: ${response.status}`)
-            }
-            return response.json()
-        })
-        .then(data => {
-            // Compara las respuestas que se reciben del controlador para trasmitir la respuesta al usuario a través de una alerta.
-            if (data.message === "Estudiante eliminado") {
-                alert("El estudiante ha sido eliminado exitosamente");
-                document.getElementById("eliminateStudentByIdForm").style.display = "none";
-            } else if (data.message === 'Error. El ID del estudiante no existe.') {
-                alert("El ID del estudiante no existe.")
-            }
-        })
-        .catch(error => {
-            console.log('Error: ', error);
-            alert("Error en el catch");
         });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert(result.message);
+        } else {
+            alert('Error: ' + result.message);
+        }
+    } catch (error) {
+        alert('Error al conectar con el servidor: ' + error.message);
+    }
 });
 
 
@@ -265,7 +235,7 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            "authorization": window.sessionStorage.getItem('token')
+            'authorization': 'Bearer ' + window.sessionStorage.getItem('token')
         },
         body: studenDataJson // Se envia el objeto como el body del POST
     })
@@ -274,14 +244,16 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
             if (!data){ // Si la data no está disponible o está incompleta se envía un alerta
                 alert('Error al añadir estudiante.')
                 document.getElementById("addStudentForm").style.display = "none";
-            } else { // Si los datos ingresan correctamente se crea el nuevo estudiante y se avisa con un alerta
+            } else if (data.message === 'Token invalido o expirado') {
+                alert('Debes estar registrado para realizar esta operacion.')
+            } else if (data.status === 201) { // Si los datos ingresan correctamente se crea el nuevo estudiante y se avisa con un alerta
                 alert('Estudiante añadido con exito.')
                 document.getElementById("addStudentForm").style.display = "none";
             }
         })
         .catch(error => {
             console.error('Error: ', error);
-            alert('Error al añadir estudiante.')
+            alert('Hubo un error de conexion con el servidor.')
         });
 });
 
@@ -335,10 +307,10 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
     .then(response => response.json())
     .then(data => {
-        // Validaciones de token
-        if(!data.token) {
-            console.error('Token no proporcionado')
-        }
+        // // Validaciones de token
+        // if(!data.token) {
+        //     console.error('Token no proporcionado')
+        // }
 
         // Comprobacion de errores segun el mensaje que retorne del controlador
         if (data.message === 'Email no registrado.') {

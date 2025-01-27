@@ -41,15 +41,17 @@ const getStudentById = (id) => {
 const updateStudent = (id, newData) => {
     studentsList = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
     const student = studentsList.find(s => s.id === parseInt(id));
+    
     if (!student) {
         return "Estudiante no encontrado."
-    } else {
-        const newStudent = { ...student, ...newData }
-        const i = studentsList.indexOf(student)
-        studentsList[i] = newStudent
-        fs.writeFileSync(dataPath, JSON.stringify(studentsList, null, 2), 'utf-8')
-        return "Estudiante actualizado con exito"
-    }
+    } 
+
+    const newStudent = { ...student, ...newData }
+
+    const i = studentsList.indexOf(student)
+    studentsList[i] = newStudent
+    fs.writeFileSync(dataPath, JSON.stringify(studentsList, null, 2), 'utf-8')
+    return "Estudiante actualizado con exito"
 }
 
 // Funcion para eliminar un estudiante
@@ -66,7 +68,7 @@ const deleteStudent = async (id) => {
         fs.writeFileSync(dataPath, JSON.stringify(newStudentList, null, 2), 'utf-8')
         return "Estudiante eliminado"
     } catch (error) {
-        return `Error al eliminar el estudiante: ${error.message}`;
+        return `Error al eliminar el estudiante`;
     }
 }
 
@@ -109,6 +111,7 @@ const loginUser = async (email, password) => {
     if(!token){
         return 'Error al generar token'        
     }
+    console.log("token de model: ", token)
     return token;
 }
 

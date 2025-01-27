@@ -1,16 +1,5 @@
 [
   {
-    "id": 7,
-    "name": "Eve",
-    "course": "Backend",
-    "role": "student",
-    "notes": [
-      7,
-      8,
-      9
-    ]
-  },
-  {
     "id": 2,
     "name": "Pipo",
     "course": "Frontend",
@@ -44,41 +33,15 @@
     ]
   },
   {
+    "id": 10,
+    "name": "Ada",
+    "course": "Backend",
+    "role": "student",
+    "notes": "7 8 9"
+  },
+  {
     "id": 5,
-    "name": "Mimo",
-    "course": "Backend",
-    "role": "student",
-    "notes": [
-      7,
-      8,
-      9
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Lola",
-    "course": "Backend",
-    "role": "student",
-    "notes": [
-      7,
-      8,
-      9
-    ]
-  },
-  {
-    "id": 7,
-    "name": "Berni",
-    "course": "Backend",
-    "role": "student",
-    "notes": [
-      7,
-      8,
-      9
-    ]
-  },
-  {
-    "id": 8,
-    "name": "Sofia",
+    "name": "Lolo",
     "course": "Backend",
     "role": "student",
     "notes": [

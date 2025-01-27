@@ -56,9 +56,12 @@ const registerUser = async (req, res) => {
     }       
 }
 
-// Función de inicio de sesión
+// Función de inicio de sesión 
 const loginUser = async (req,res) => {
-    const {email,password} = req.body
+    const { email, password } = req.body
+    if (!email || !password) {
+        res.status(400).json({message: 'Campos incompletos'});
+    }
     const result = await studentsModel.loginUser(email, password) 
     if(result === 'Usuario no encontrado') {
         return res.status(404).json({message: 'Email no registrado.'});
