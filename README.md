@@ -26,15 +26,17 @@ Es el punto de entrada del servidor. Acá se se configura el proyecto y se defin
 ### 2. `studentsRoutes.js`
 - **Rutas principales**: Se configuró el router definido en `studentsRoutes.js` para manejar las solicitudes hacia `/students`. Se configuraron tambien rutas protegidas para las que se requiere autenticación y validación de datos.
 
-### 3. Controladores y Medelos (`studentsController.js`y `studentsModel.js`)
+**NOTA:** En caso de pruebas técnicas en **Postman** para las rutas protegidas, se debe ingresar en 'Authorization' el formato de token  completo (`header.payload.signature`) de tipo 'Bearer token'.
+
+### 3. Controladores y Modelos (`studentsController.js`y `studentsModel.js`)
 
 Se definieron las funciones para manejar las solicitudes relacionadas con estudiantes y usuarios:
 
 - **Obtener estudiantes (********`getStudents`********)**: Retorna todxs lxs estudiantes con su respectiva información. Permite que profesores y estudiantes vean la información pública de los estudiantes.
-- **Añadir estudiante (********`addStudent`********)**: Toma los datos de la solicitud, los guarda en la base de datos (`studentsData.json`) y devuelve un mensaje de éxito si se completaron los datos correctamente. Esta función está disponible para los usuarios registrados (en este caso, serían lxs docentes). IMPORTANTE: El campo NOTAS debe tener los siguientes formatos: POSTMAN: `[1,2,3]` y NAVEGADOR: `1 2 3`.  
+- **Añadir estudiante (********`addStudent`********)**: Toma los datos de la solicitud, los guarda en la base de datos (`studentsData.json`) y devuelve un mensaje de éxito si se completaron los datos correctamente. Esta función está disponible para los usuarios registrados (en este caso, serían lxs docentes). IMPORTANTE: El campo NOTAS debe tener el siguiente formato, tanto en POSTMAN como en NAVEGADOR: `Modulo1=9, Modulo2=8` (Sería el nombre del modulo y la nota, cada modulo debe estar separado por comas).
 - **Buscar estudiante por ID (********`getStudentById`********)**: Busca unx estudiante en la base de datos usando su ID y muestra su ficha.
 - **Actualizar estudiante (********`updateStudent`********)**: Actualiza estudiantes, modificando sus datos con los enviados en el cuerpo de la solicitud y guarda los cambios en `studentsData.json`. Esta función está disponible para los usuarios registrados.
-IMPORTANTE: El campo NOTAS debe tener los siguientes formatos: POSTMAN: `[1,2,3]` y NAVEGADOR: `1 2 3`. 
+IMPORTANTE: El campo NOTAS debe tener el siguiente formato, tanto en POSTMAN como en NAVEGADOR: `Modulo1=9, Modulo2=8` (Sería el nombre del modulo y la nota, cada modulo debe estar separado por comas). 
 - **Eliminar estudiante (********`deleteStudent`********)**: Elimina estudiantes desde su ID. Esta función está disponible para los usuarios registrados. 
 - **Registrar usuario (********`registerUser`********)**: Registra un nuevo usuario (docente).
 - **Logear usuario (********`loginUser`********)**: Permite iniciar sesión.
@@ -92,6 +94,6 @@ Cuenta con:
 ### **5 botones:**
 - **Ver Estudiantes**: Despliega las fichas de todos los estudiantes.
 - **Buscar estudiante por ID**: Despliaga un cuadro de texto para ingresar el ID y un botón de búsqueda.
-- **Editar estudiante**: Despliega cuadros de texto para ingresar los nuevos datos. IMPORTANTE: El campo NOTAS debe tener los siguientes formatos: POSTMAN: `[1,2,3]` y NAVEGADOR: `1 2 3`.
+- **Editar estudiante**: Despliega cuadros de texto para ingresar los nuevos datos. IMPORTANTE: El campo NOTAS debe tener el siguiente formato, tanto en POSTMAN como en NAVEGADOR: `Modulo1=9, Modulo2=8` (Sería el nombre del modulo y la nota, cada modulo debe estar separado por comas).
 - **Eliminar estudiante**: Despliaga un cuadro de texto para ingresar el ID del usuario que se quiere eliminar.
-- **Añadir estudiante**: Despliega cuadros de texto para ingresar los datos del nuevo estudiante. IMPORTANTE: El campo NOTAS debe tener los siguientes formatos: POSTMAN: `[1,2,3]` y NAVEGADOR: `1 2 3`.
+- **Añadir estudiante**: Despliega cuadros de texto para ingresar los datos del nuevo estudiante. IMPORTANTE: El campo NOTAS debe tener el siguiente formato, tanto en POSTMAN como en NAVEGADOR: `Modulo1=9, Modulo2=8` (Sería el nombre del modulo y la nota, cada modulo debe estar separado por comas).

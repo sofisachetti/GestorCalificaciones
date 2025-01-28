@@ -115,11 +115,7 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
     const name = document.getElementById('nameEdit').value;
     const course = document.getElementById('courseEdit').value;
     const role = document.getElementById('roleEdit').value;
-    let notes = document.getElementById('notesEdit').value;
-
-// Pasamos los datos de 'notes' que entran como texto a un array de notas
-    const arrayNotes = notes.split(' ')
-    notes = arrayNotes.map(nota => parseInt(nota))
+    let notes = document.getElementById('notesEdit').value.split(', ');
 
 //Comparamos datos actuales con los nuevos y actualizamos el objeto que ingresara al body
     const updatedData = {
@@ -217,18 +213,14 @@ document.getElementById("studentForm").addEventListener("submit", async function
     const name = document.getElementById("addName").value;
     const course = document.getElementById("addCourse").value;
     const role = document.getElementById("addRole").value;
-    const notes = document.getElementById("addNotes").value;
-
-    // Pasamos los datos de 'notes' que entran como texto a un array de notas
-    const arrayNotes = notes.split(' ')
-    const newNotes = arrayNotes.map(nota => parseInt(nota))
+    const notes = document.getElementById("addNotes").value.split(', ');
 
     // Se arma un objeto representando toda la data del estudiante
     let studentData = {
         name: name,
         course: course,
         role: role,
-        notes: newNotes
+        notes: notes
     }
 
     let studenDataJson = JSON.stringify(studentData);

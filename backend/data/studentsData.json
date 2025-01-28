@@ -5,9 +5,9 @@
     "course": "Back",
     "role": "Student",
     "notes": [
-      1,
-      3,
-      4
+      "Modulo1=10",
+      "Modulo1=10",
+      "Modulo2=9"
     ]
   },
   {
@@ -23,11 +23,13 @@
   },
   {
     "id": 4,
-    "name": "Carla",
+    "name": "Lala",
     "course": "Frontend",
     "role": "Student",
     "notes": [
-      null
+      7,
+      8,
+      9
     ]
   },
   {
@@ -39,6 +41,19 @@
       7,
       8,
       9
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Lali",
+    "course": "Backend",
+    "role": "student",
+    "notes": [
+      "Modulo1=10",
+      "Modulo2=9",
+      "Modulo3=8",
+      "Modulo4=10",
+      "Modulo5=9"
     ]
   }
 ]

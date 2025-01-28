@@ -44,14 +44,16 @@ const updateStudent = (id, newData) => {
     
     if (!student) {
         return "Estudiante no encontrado."
-    } 
-
-    const newStudent = { ...student, ...newData }
-
-    const i = studentsList.indexOf(student)
-    studentsList[i] = newStudent
-    fs.writeFileSync(dataPath, JSON.stringify(studentsList, null, 2), 'utf-8')
-    return "Estudiante actualizado con exito"
+    } else {
+        if (newData.notes) {
+            newData.notes = [...student.notes, ...newData.notes];
+        }
+        const newStudent = { ...student, ...newData }
+        const i = studentsList.indexOf(student)
+        studentsList[i] = newStudent
+        fs.writeFileSync(dataPath, JSON.stringify(studentsList, null, 2), 'utf-8')
+        return "Estudiante actualizado con exito"    
+    }
 }
 
 // Funcion para eliminar un estudiante
