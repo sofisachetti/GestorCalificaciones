@@ -23,11 +23,8 @@ Este proyecto es una API Rest desarrollada con JavaScript para la de gestión de
 Es el punto de entrada del servidor. Acá se se configura el proyecto y se define el puerto en donde correra el servidor.
 - **Servidor**: Se definió escuchando en el puerto 3000.
 
-
 ### 2. `studentsRoutes.js`
 - **Rutas principales**: Se configuró el router definido en `studentsRoutes.js` para manejar las solicitudes hacia `/students`. Se configuraron tambien rutas protegidas para las que se requiere autenticación y validación de datos.
-
----
 
 ### 3. Controladores y Medelos (`studentsController.js`y `studentsModel.js`)
 
@@ -46,7 +43,6 @@ IMPORTANTE: El campo NOTAS debe tener los siguientes formatos: POSTMAN: `[1,2,3]
 ### 4. Middlewares (`authenticationToken.js` y `validateStudent.js`)
 
 - **Middlewares**: Se configuraron dos middlewares para validar la autenticación y validar los datos ingresados en las rutas protegidas.
----
 
 ### 5. Data (`studentsData.json` y `usersData.json`)
 Utilizamos dos archivos JSON que simulan ser una base de datos tanto para estudiantes como para usuarios registrados.
@@ -54,7 +50,24 @@ Utilizamos dos archivos JSON que simulan ser una base de datos tanto para estudi
 ### 6. Public (`public/`)
 Dentro de este directorio, se encuentran los archivos index.html y style.css que se utilizan para mostrar la interfaz de usuario, y por otro lado el archivo script.js que se encarga de conectar al frontend con el backend. Utilizamos la librería Boostrap para el diseño.
 
+---
 
+## Instalación y Configuración
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/sofisachetti/GestorCalificaciones.git
+   ```
+2. Instalar las dependencias:
+   ```bash
+   npm install express bcrypt dotenv body-parser cors jsonwebtoken
+   ```
+3. Ejecutar el servidor:
+   ```bash
+   npm start
+   ```
+
+---
 
 ## Uso del Sistema
 

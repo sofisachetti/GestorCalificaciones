@@ -1,16 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "Pipo",
-    "course": "backend",
-    "role": "student",
-    "notes": [
-      7,
-      8,
-      9
-    ]
-  },
-  {
     "id": 2,
     "name": "Gime",
     "course": "Back",
@@ -34,11 +23,22 @@
   },
   {
     "id": 4,
-    "name": "Gime",
+    "name": "Carla",
     "course": "Frontend",
     "role": "Student",
     "notes": [
       null
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Lola",
+    "course": "Backend",
+    "role": "student",
+    "notes": [
+      7,
+      8,
+      9
     ]
   }
 ]

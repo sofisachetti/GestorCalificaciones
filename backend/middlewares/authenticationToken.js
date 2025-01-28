@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
-const SECRET_KEY = 'secretKey123'//clave secreta para JWT
+const SECRET_KEY = process.env.SECRET_KEY || 'secretKey123'//clave secreta para JWT
 
 
 
- async function authenticateToken(req, res, next) {
+async function authenticateToken(req, res, next) {
     // Obtener el encabezado de autorización
     const authHeader =  req.headers['authorization'];
 
