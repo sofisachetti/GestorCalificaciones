@@ -28,5 +28,15 @@
     "id": 1738012869782,
     "email": "lala@gmail.com",
     "password": "$2b$10$v3qAux/eQq8w1PLvqoWNtek4Q4jRSiM/dSejOX021HhyDw1DlDRpO"
+  },
+  {
+    "id": 1738024367685,
+    "email": "Chori@gmail.com",
+    "password": "$2b$10$ZXWVTaelN9DDu.YvRHGxhecCjBg6M5LUcyztr/2I3OTKChU9XxBHm"
+  },
+  {
+    "id": 1738092860038,
+    "email": "olivia@gmail.com",
+    "password": "$2b$10$ElTaB93ENa/w5eppbOs33efAnUoRb8cZ9JjyrJUhxtvlzKyekNxjW"
   }
 ]

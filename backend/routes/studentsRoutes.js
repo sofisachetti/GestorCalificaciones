@@ -29,10 +29,6 @@ router.post('/register',studentsController.registerUser)
 // Método para inicio de sesion
 router.post('/login', studentsController.loginUser)
 
-// Método Ruta Protegida acceso 
-router.post('/profile', middlewareAuthenticateToken.authenticateToken, (req, res) => {
-    res.status(200).send("Ya tienes acceso a las funciones de admin.")
-})
 
 
 module.exports = router

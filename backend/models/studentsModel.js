@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 require('dotenv').config();
 
-const SECRET_KEY = process.env.SECRET_KEY || 'secretKey123'; // Clave para JWT
+const SECRET_KEY = 'secretKey123'; // Clave para JWT
 
 
 // Hacemos la ruta hacia nuestra base de datos
@@ -111,7 +111,6 @@ const loginUser = async (email, password) => {
     if(!token){
         return 'Error al generar token'        
     }
-    console.log("token de model: ", token)
     return token;
 }
 

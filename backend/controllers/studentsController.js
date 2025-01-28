@@ -71,7 +71,7 @@ const loginUser = async (req,res) => {
         return res.status(400).json({message: 'Error al generar token.'});
     }
     req.token = result
-    return res.status(200).json({message: 'Inicio de sesión exitoso', token: result})
+    return res.status(200).send({message: 'Inicio de sesión exitoso', token: result})
 }
 
 // Exportacion de funciones

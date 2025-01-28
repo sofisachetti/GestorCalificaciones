@@ -2,7 +2,6 @@ const PORT = 3000;
 
 
 // Script para metodo GET ALL STUDENTS - ES DE ACCESO LIBRE
-
 // Se hace la petición con fetch a la url del back para obtener todos los alumnos
 document.getElementById("allStudentsbtn").addEventListener("click", function () {
     fetch(`http://localhost:3000/students`)
@@ -94,7 +93,6 @@ document.getElementById("studentForm1").addEventListener("submit", function (e) 
 
 
 // Script para metodo PUT - UPDATE STUDENT (RUTA PROTEGIDA)
-
 document.getElementById("editStudentByIdbtn").addEventListener("click", function () {
     document.getElementById("editStudentByIdForm").style.display = "block";
 });
@@ -117,8 +115,13 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
     const name = document.getElementById('nameEdit').value;
     const course = document.getElementById('courseEdit').value;
     const role = document.getElementById('roleEdit').value;
-    const notes = document.getElementById('notesEdit').value;
+    let notes = document.getElementById('notesEdit').value;
 
+// Pasamos los datos de 'notes' que entran como texto a un array de notas
+    const arrayNotes = notes.split(' ')
+    notes = arrayNotes.map(nota => parseInt(nota))
+
+//Comparamos datos actuales con los nuevos y actualizamos el objeto que ingresara al body
     const updatedData = {
     ...(name && { name }),
     ...(course && { course }),
@@ -131,7 +134,7 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': 'Bearer ' + window.sessionStorage.getItem('token')
+            'Authorization': 'Bearer ' + window.sessionStorage.getItem('token')
         },
         body: JSON.stringify(updatedData)
     });
@@ -139,8 +142,8 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
     const result = await response.json();
     if (response.ok) {
         alert(result.message);
-    } else {
-        alert('Error: ' + result.message);
+    } else if (response.status === 401) {
+        alert('Error: no tenes autorización para acceder a esta ruta');
     }
     } catch (error) {
         alert('Error al conectar con el servidor: ' + error.message);
@@ -148,7 +151,6 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
 });
 
 // Script para metodo DELETE - ELIMINAR STUDENT (RUTA PROTEGIDA)
-
 document.getElementById("eliminateStudentbtnn").addEventListener("click", function () {
     document.getElementById("eliminateStudentByIdForm").style.display = "block";
 });
@@ -179,16 +181,17 @@ document.getElementById("eliminateStudentByIdForm").addEventListener("submit", a
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': 'Bearer ' + window.sessionStorage.getItem('token')
+            'Authorization': 'Bearer ' + window.sessionStorage.getItem('token')
         }
         });
 
         const result = await response.json();
+        console.log(result);        
 
         if (response.ok) {
             alert(result.message);
-        } else {
-            alert('Error: ' + result.message);
+        } else if (response.status === 401) {
+            alert('Error: no tenes autorización para acceder a esta ruta');
         }
     } catch (error) {
         alert('Error al conectar con el servidor: ' + error.message);
@@ -197,7 +200,6 @@ document.getElementById("eliminateStudentByIdForm").addEventListener("submit", a
 
 
 // Script para metodo POST- ADD STUDENT (RUTA PROTEGIDA)
-
 // Formulario que va a estar escondido hasta que se haca click en el boton de AÑADIR ESTUDIANTE
 document.getElementById("addStudentbtnn").addEventListener("click", function () {
     document.getElementById("addStudentForm").style.display = "block";
@@ -208,7 +210,7 @@ document.getElementById("cancelBtn6").addEventListener("click", function () {
 });
 
 // Manejar la acción de envío del formulario
-document.getElementById("studentForm").addEventListener("submit", function (e) {
+document.getElementById("studentForm").addEventListener("submit", async function (e) {
     e.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
 
     // Obtener y guardar en contantes los datos del input para crear un objeto para enviar en POST
@@ -231,35 +233,33 @@ document.getElementById("studentForm").addEventListener("submit", function (e) {
 
     let studenDataJson = JSON.stringify(studentData);
 
-    fetch('http://localhost:3000/students', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer ' + window.sessionStorage.getItem('token')
-        },
-        body: studenDataJson // Se envia el objeto como el body del POST
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (!data){ // Si la data no está disponible o está incompleta se envía un alerta
-                alert('Error al añadir estudiante.')
-                document.getElementById("addStudentForm").style.display = "none";
-            } else if (data.message === 'Token invalido o expirado') {
-                alert('Debes estar registrado para realizar esta operacion.')
-            } else if (data.status === 201) { // Si los datos ingresan correctamente se crea el nuevo estudiante y se avisa con un alerta
-                alert('Estudiante añadido con exito.')
-                document.getElementById("addStudentForm").style.display = "none";
-            }
+    try{
+        const response = await fetch('http://localhost:3000/students', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem('token')
+            },
+            body: studenDataJson // Se envia el objeto como el body del POST
         })
-        .catch(error => {
-            console.error('Error: ', error);
-            alert('Hubo un error de conexion con el servidor.')
-        });
+
+    
+        const result = await response.json();        
+        console.log(result);        
+
+        if (response.ok) {
+            alert("Estudiante agregado con exito");
+        } else if (response.status === 401) {
+            alert('Error: no tenes autorización para acceder a esta ruta');
+        }
+    } catch (error) {
+        alert('Error al conectar con el servidor: ' + error.message);
+    }
 });
 
 
-// Script para formulario de REGISTER
 
+// Script para formulario de REGISTER
 document.getElementById("registerForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -307,25 +307,24 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
     .then(response => response.json())
     .then(data => {
-        // // Validaciones de token
-        // if(!data.token) {
-        //     console.error('Token no proporcionado')
-        // }
 
         // Comprobacion de errores segun el mensaje que retorne del controlador
         if (data.message === 'Email no registrado.') {
             alert("Error. El email no está registrado o es incorrecto.")
         } else if (data.message === 'Contrasena incorrecta') {
             alert("Error. La contraseña es incorrecta.")
-        } else { 
+        } else {             
+            
             // Si la solicitud es exitosa, toma el token que se envia del controlador. Con el metodo split() los dividimos para extraer el payload
             const partsToken = data.token.split('.')
+            
             // El payload se guarda en una constante
             const payload = partsToken[1]
+            
             // Esa constante se pasa al sessionStorage del navegador, que va a persistir mientras el navegador esté abierto
             // Una vez que el navgador se cierra, la informacion ahi reservada se elimina.
             // En las rutas protegidas se realiza un getItem() para validar los accesos.
-            window.sessionStorage.setItem('token', payload)    
+            window.sessionStorage.setItem('token', data.token)    
             alert("Inicio de sesión exitoso!")
         }
     })

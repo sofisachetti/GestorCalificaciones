@@ -1,53 +1,44 @@
 [
   {
-    "id": 2,
+    "id": 1,
     "name": "Pipo",
-    "course": "Frontend",
+    "course": "backend",
     "role": "student",
     "notes": [
       7,
       8,
       9
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Gime",
+    "course": "Back",
+    "role": "Student",
+    "notes": [
+      1,
+      3,
+      4
     ]
   },
   {
     "id": 3,
-    "name": "Lolo",
-    "course": "Backend",
+    "name": "Eve",
+    "course": "backend",
     "role": "student",
     "notes": [
-      7,
-      8,
-      9
+      1,
+      2,
+      3
     ]
   },
   {
     "id": 4,
-    "name": "Carla",
-    "course": "Backend",
-    "role": "student",
+    "name": "Gime",
+    "course": "Frontend",
+    "role": "Student",
     "notes": [
-      7,
-      8,
-      9
-    ]
-  },
-  {
-    "id": 10,
-    "name": "Ada",
-    "course": "Backend",
-    "role": "student",
-    "notes": "7 8 9"
-  },
-  {
-    "id": 5,
-    "name": "Lolo",
-    "course": "Backend",
-    "role": "student",
-    "notes": [
-      7,
-      8,
-      9
+      null
     ]
   }
 ]
