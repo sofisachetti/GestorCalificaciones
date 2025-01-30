@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, './public'))) // Configuramos la car
 app.use('/students', studentsRoutes)
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'))
+    res.sendFile(path.join(__dirname, '../public/index.html'))
 })
 
 // Iniciamos el servidor
