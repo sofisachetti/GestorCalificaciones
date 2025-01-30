@@ -22,7 +22,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json())
 
 // Servir los archivos estaticos en el front
-app.use(express.static(path.join(__dirname, './public'))) // Configuramos la carpeta public para servir archivos estaticos (html)
+app.use(express.static(path.join(__dirname, '../public'))) // Configuramos la carpeta public para servir archivos estaticos (html)
 
 // Configuración de la ruta principal
 app.use('/students', studentsRoutes)
