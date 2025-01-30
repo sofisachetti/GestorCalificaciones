@@ -1,10 +1,11 @@
 const PORT = 3000;
+const API_URL = '/students'
 
 
 // Script para metodo GET ALL STUDENTS - ES DE ACCESO LIBRE
 // Se hace la petición con fetch a la url del back para obtener todos los alumnos
 document.getElementById("allStudentsbtn").addEventListener("click", function () {
-    fetch(`http://localhost:3000/students`)
+    fetch(API_URL)
         .then(response => response.json())
         // La info que devuelve el controlador (lista de alumnos) llega como 'data'
         .then(data => { 
