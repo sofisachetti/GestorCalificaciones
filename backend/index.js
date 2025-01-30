@@ -27,6 +27,10 @@ app.use(express.static(path.join(__dirname, './public'))) // Configuramos la car
 // Configuración de la ruta principal
 app.use('/students', studentsRoutes)
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
+})
+
 // Iniciamos el servidor
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}/students`);
