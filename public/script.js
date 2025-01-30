@@ -59,7 +59,7 @@ document.getElementById("studentForm1").addEventListener("submit", function (e) 
     // Se toma el valor que el usuario pone en el input (id del alumno buscado) y se guarda en una constante
     const id = document.getElementById("idStudentById").value;
     // El id se pasa como el parametro al endpoint de peticion al back
-    fetch(`http://localhost:3000/students/${id}`, {
+    fetch(`${API_URL}/${id}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -127,7 +127,7 @@ document.getElementById("editStudentForm").addEventListener("submit", async func
     };
 
     try {
-        const response = await fetch(`http://localhost:3000/students/${id}`, {
+        const response = await fetch(`${API_URL}/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ document.getElementById("eliminateStudentByIdForm").addEventListener("submit", a
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/students/${id}`, {
+        const response = await fetch(`${API_URL}/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -227,7 +227,7 @@ document.getElementById("studentForm").addEventListener("submit", async function
     let studenDataJson = JSON.stringify(studentData);
 
     try{
-        const response = await fetch('http://localhost:3000/students', {
+        const response = await fetch(API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -261,7 +261,7 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     const password = document.getElementById("passwordRegister").value;
 
     // Enviamos la solicitud de registro al back
-    fetch("http://localhost:3000/students/register", {
+    fetch(`${API_URL}/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -290,7 +290,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     const email = document.getElementById("usuarioLogin").value;
     const password = document.getElementById("passwordLogin").value;
 
-    fetch("http://localhost:3000/students/login", {
+    fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
